@@ -1,0 +1,8 @@
+
+.etiquette{
+    color: black;
+    margin: 3em;
+    text-align: center;
+}
+
+#cssmenu, form, #currentUser, footer{ display: none;}
