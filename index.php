@@ -5,7 +5,6 @@
  * Date: 03-09-18
  * Time: 11:56
  */
-
 require 'dbConnect.php';
 session_start();
 //$_SESSION['pseudo'];
@@ -14,7 +13,7 @@ $message ='';
 
 if(isset($_SESSION["pseudo"])){header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');}
 
-$sql='SELECT username FROM db_project_pyrobel.user';
+$sql='SELECT name FROM safetyglass_db.user';
 
 $listUser=$db->query($sql);
 
@@ -28,16 +27,28 @@ if(isset($_SESSION["pseudo"])){
 }*/
 if($_POST) //On check le mot de passe
 {
-    $query=$db->prepare('SELECT iduser, username, password
-        FROM db_project_pyrobel.user WHERE username = :pseudo');
+    $query=$db->prepare('SELECT iduser, name, password
+        FROM safetyglass_db.user WHERE name = :pseudo');
     $query->bindValue(':pseudo',$_POST['pseudo'], PDO::PARAM_STR);
     $query->execute();
     $data=$query->fetch();
     if ($data['password'] == $_POST['password']) // Acces OK !
     {
-        $_SESSION['pseudo'] = $data['username'];
+        $_SESSION['pseudo'] = $data['name'];
         $_SESSION['id'] = $data['iduser'];
         //$message = '<p>Bienvenue '.$data['username'].',vous êtes maintenant connecté!</p>';
+        try {
+          // insertion date, heure de la dernier Connexion
+          $lastTimeLogin = date('h:i:s, j-m-y');
+
+          $sqlUpdate="UPDATE `safetyglass_db`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
+
+          $stmt=$db->query($sqlUpdate);
+          $stmt->execute();
+        }catch(PDOException $e){
+          echo $sql . "<br>" . $e->getMessage();
+        }  
+        //redirection vers la page d'acceuil
         header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
         exit();
     }else if($data['password'] != $_POST['password']) // Acces pas OK !
@@ -94,7 +105,7 @@ if($_POST) //On check le mot de passe
                     <!--<input class="input100" type="text" name="pseudo">-->
                     <?php
                         echo "<select name='pseudo' class=\"input100\" size='1'>";
-                            foreach ($listUser as $item){ echo "<option name='pseudo' value='".$item['username']."' id='".$item['idUser']."'>".$item['username']."</option>";}
+                            foreach ($listUser as $item){ echo "<option name='pseudo' value='".$item['name']."' id='".$item['idUser']."'>".$item['name']."</option>";}
                         echo "</select>";
                     ?>
                     <!--<span class="focus-input100" data-placeholder="Username"></span>-->
