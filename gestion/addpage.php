@@ -46,10 +46,10 @@
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <main>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'ajouter_user')">Ajout user</button>
-        <button class="tablinks" onclick="openCity(event, 'addType')">Ajout type</button>
-        <button class="tablinks" onclick="openCity(event, 'addRack')">Ajout rack</button>
-        <button class="tablinks" onclick="openCity(event, 'addEmp')">Ajout emplacement</button>
+        <button class="tablinks" onclick="openCity(event, 'ajouter_user')">Ajout User</button>
+        <button class="tablinks" onclick="openCity(event, 'addType')">Ajout Type</button>
+        <button class="tablinks" onclick="openCity(event, 'addRack')">Ajout Rack</button>
+        <button class="tablinks" onclick="openCity(event, 'addEmp')">Ajout Emplacement</button>
     </div>
 
     <div id="ajouter_user" class="tabcontent">
