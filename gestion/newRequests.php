@@ -66,6 +66,9 @@ function elementNewLoss($new_r)
             }
             echo "<select>";
             break;
+        case 'typechute':
+            echo "typechute";
+            break;
         default:
             'error';
     }
