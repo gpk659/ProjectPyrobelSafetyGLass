@@ -6,9 +6,12 @@
  * Time: 23:32
  */
 
-echo date("Y-m-d");
+
+//echo date('l jS \of F Y h:i:s A');
 
 
+$today = date('h:i:s, j-m-y');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
+echo $today;
 ?>
 
 

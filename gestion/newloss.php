@@ -7,6 +7,7 @@
  */
 session_start();
 include 'secure.php';
+include_once 'newRequests.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -35,7 +36,7 @@ include_once ("menu.php");
             </div>
             <div class="form-group">
                 <label for="typechute">Type de chute :</label>
-               <?php include 'typeChute.php';?>
+               <?php /*$include 'typeChute.php';$ */?>
             </div>
             <div class="form-group">
                 <label for="numlot">Numéro du lot : </label>
@@ -44,7 +45,16 @@ include_once ("menu.php");
             <div class="form-group">
                 <label for="numrack">Numéro du rack : </label>
                 <input id="numrack"  class="form-control" type="text" id="rack" name="rackChute" required>
-            </div
+            </div>
+            <div class="form-group">
+                <?php elementNewLoss('emp');  ?>
+            </div>
+            <div class="form-group">
+                <?php elementNewLoss('op');  ?>
+            </div>
+            <div class="form-group">
+                <?php elementNewLoss('plateau');  ?>
+            </div>
             <div class="form-group">
                 <label>Commentaire :</label>
                 <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..."></textarea>

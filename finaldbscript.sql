@@ -8,22 +8,15 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema safetyglass_db
 -- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema safetyglass
--- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `safetyglass_db` DEFAULT CHARACTER SET latin1 ;
+USE `safetyglass_db` ;
 
 -- -----------------------------------------------------
--- Schema safetyglass
+-- Table `safetyglass_db`.`plateau`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `safetyglass` DEFAULT CHARACTER SET latin1 ;
-USE `safetyglass` ;
-
--- -----------------------------------------------------
--- Table `safetyglass`.`plateau`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`plateau` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`plateau` (
   `idPlateau` INT(10) NOT NULL,
   `idType` INT(10) NOT NULL,
   `idEmplacement` INT(10) NOT NULL,
@@ -44,9 +37,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`defaut_agc`
+-- Table `safetyglass_db`.`defaut_agc`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`defaut_agc` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`defaut_agc` (
   `idDefaut_AGC` INT(11) NOT NULL AUTO_INCREMENT,
   `initialeTypeDefaut` VARCHAR(1) NOT NULL,
   `X0` INT(4) NOT NULL,
@@ -59,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`defaut_agc` (
   INDEX `fk_defaut_agc_plateau1_idx` (`plateau_idPlateau` ASC),
   CONSTRAINT `fk_defaut_agc_plateau1`
     FOREIGN KEY (`plateau_idPlateau`)
-    REFERENCES `safetyglass`.`plateau` (`idPlateau`)
+    REFERENCES `safetyglass_db`.`plateau` (`idPlateau`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -67,9 +60,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`usine`
+-- Table `safetyglass_db`.`usine`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`usine` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`usine` (
   `idUsine` INT(10) NOT NULL,
   `abreviation` VARCHAR(2) NULL DEFAULT NULL,
   `nomUsine` VARCHAR(45) NULL DEFAULT NULL,
@@ -85,9 +78,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`zone`
+-- Table `safetyglass_db`.`zone`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`zone` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`zone` (
   `idZone` INT(11) NOT NULL,
   `abreviation` VARCHAR(2) NULL DEFAULT NULL,
   `nomZone` VARCHAR(45) NULL DEFAULT NULL,
@@ -101,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`zone` (
   INDEX `fk_zone_usine1_idx` (`usine_idUsine` ASC),
   CONSTRAINT `fk_zone_usine1`
     FOREIGN KEY (`usine_idUsine`)
-    REFERENCES `safetyglass`.`usine` (`idUsine`)
+    REFERENCES `safetyglass_db`.`usine` (`idUsine`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -109,9 +102,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`rack`
+-- Table `safetyglass_db`.`rack`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`rack` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`rack` (
   `idRack` INT(10) NOT NULL,
   `abreviation` VARCHAR(2) NULL DEFAULT NULL,
   `nomPosition` VARCHAR(45) NULL DEFAULT NULL,
@@ -125,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`rack` (
   INDEX `fk_rack_zone_idx` (`zone_idZone` ASC),
   CONSTRAINT `fk_rack_zone`
     FOREIGN KEY (`zone_idZone`)
-    REFERENCES `safetyglass`.`zone` (`idZone`)
+    REFERENCES `safetyglass_db`.`zone` (`idZone`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -133,9 +126,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`emplacement`
+-- Table `safetyglass_db`.`emplacement`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`emplacement` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`emplacement` (
   `idEmplacement` INT(10) NOT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
   `largeurPied` INT(4) NULL DEFAULT NULL,
@@ -149,17 +142,17 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`emplacement` (
   INDEX `fk_emplacement_rack1_idx` (`rack_idRack` ASC),
   CONSTRAINT `fk_emplacement_usine1`
     FOREIGN KEY (`usine_idUsine`)
-    REFERENCES `safetyglass`.`usine` (`idUsine`)
+    REFERENCES `safetyglass_db`.`usine` (`idUsine`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_emplacement_zone1`
     FOREIGN KEY (`zone_idZone`)
-    REFERENCES `safetyglass`.`zone` (`idZone`)
+    REFERENCES `safetyglass_db`.`zone` (`idZone`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_emplacement_rack1`
     FOREIGN KEY (`rack_idRack`)
-    REFERENCES `safetyglass`.`rack` (`idRack`)
+    REFERENCES `safetyglass_db`.`rack` (`idRack`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -167,9 +160,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`fammille_type`
+-- Table `safetyglass_db`.`fammille_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`fammille_type` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`fammille_type` (
   `idFammille_Type` INT(11) NOT NULL AUTO_INCREMENT,
   `nomFammille_Type` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idFammille_Type`),
@@ -179,9 +172,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`listeoperateur`
+-- Table `safetyglass_db`.`listeoperateur`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`listeoperateur` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`listeoperateur` (
   `idOperateur` INT(11) NOT NULL AUTO_INCREMENT,
   `initialesOp` VARCHAR(3) NULL DEFAULT NULL,
   `nomOp` VARCHAR(45) NULL DEFAULT NULL,
@@ -193,12 +186,12 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`listeoperateur` (
   INDEX `fk_listeoperateur_zone1_idx` (`zone_idZone` ASC),
   CONSTRAINT `fk_listeoperateur_usine1`
     FOREIGN KEY (`usine_idUsine`)
-    REFERENCES `safetyglass`.`usine` (`idUsine`)
+    REFERENCES `safetyglass_db`.`usine` (`idUsine`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listeoperateur_zone1`
     FOREIGN KEY (`zone_idZone`)
-    REFERENCES `safetyglass`.`zone` (`idZone`)
+    REFERENCES `safetyglass_db`.`zone` (`idZone`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -206,9 +199,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`listechutte`
+-- Table `safetyglass_db`.`listechutte`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`listechutte` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`listechutte` (
   `idChutte` INT(10) NOT NULL AUTO_INCREMENT,
   `largeur` INT(4) NULL DEFAULT NULL,
   `hauteur` INT(4) NULL DEFAULT NULL,
@@ -230,17 +223,17 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`listechutte` (
   INDEX `fk_listechutte_emplacement1_idx` (`emplacement_idEmplacement` ASC),
   CONSTRAINT `fk_listechutte_plateau1`
     FOREIGN KEY (`plateau_idPlateau`)
-    REFERENCES `safetyglass`.`plateau` (`idPlateau`)
+    REFERENCES `safetyglass_db`.`plateau` (`idPlateau`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listechutte_listeoperateur1`
     FOREIGN KEY (`listeoperateur_idOperateur`)
-    REFERENCES `safetyglass`.`listeoperateur` (`idOperateur`)
+    REFERENCES `safetyglass_db`.`listeoperateur` (`idOperateur`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listechutte_emplacement1`
     FOREIGN KEY (`emplacement_idEmplacement`)
-    REFERENCES `safetyglass`.`emplacement` (`idEmplacement`)
+    REFERENCES `safetyglass_db`.`emplacement` (`idEmplacement`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -248,9 +241,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`listedefaut`
+-- Table `safetyglass_db`.`listedefaut`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`listedefaut` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`listedefaut` (
   `idDefaut` INT(10) NOT NULL AUTO_INCREMENT,
   `X0` INT(10) NULL DEFAULT NULL,
   `Y0` INT(10) NULL DEFAULT NULL,
@@ -263,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`listedefaut` (
   INDEX `fk_listedefaut_plateau1_idx` (`plateau_idPlateau` ASC),
   CONSTRAINT `fk_listedefaut_plateau1`
     FOREIGN KEY (`plateau_idPlateau`)
-    REFERENCES `safetyglass`.`plateau` (`idPlateau`)
+    REFERENCES `safetyglass_db`.`plateau` (`idPlateau`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -271,9 +264,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`listevolumesbons`
+-- Table `safetyglass_db`.`listevolumesbons`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`listevolumesbons` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`listevolumesbons` (
   `idVolume` INT(11) NOT NULL AUTO_INCREMENT,
   `numCom` VARCHAR(45) NOT NULL,
   `lettre` VARCHAR(3) NOT NULL,
@@ -295,17 +288,17 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`listevolumesbons` (
   INDEX `fk_listevolumesbons_listeoperateur1_idx` (`listeoperateur_idOperateur` ASC),
   CONSTRAINT `fk_listevolumesbons_plateau1`
     FOREIGN KEY (`plateau_idPlateau`)
-    REFERENCES `safetyglass`.`plateau` (`idPlateau`)
+    REFERENCES `safetyglass_db`.`plateau` (`idPlateau`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listevolumesbons_listechutte1`
     FOREIGN KEY (`listechutte_idChutte`)
-    REFERENCES `safetyglass`.`listechutte` (`idChutte`)
+    REFERENCES `safetyglass_db`.`listechutte` (`idChutte`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listevolumesbons_listeoperateur1`
     FOREIGN KEY (`listeoperateur_idOperateur`)
-    REFERENCES `safetyglass`.`listeoperateur` (`idOperateur`)
+    REFERENCES `safetyglass_db`.`listeoperateur` (`idOperateur`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -313,9 +306,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`sousfamille_type`
+-- Table `safetyglass_db`.`sousfamille_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`sousfamille_type` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`sousfamille_type` (
   `idSousFamille_Type` INT(10) NOT NULL,
   `nomSousFamilleType` VARCHAR(45) NULL DEFAULT NULL,
   `fammille_type_idFammille_Type` INT(11) NOT NULL,
@@ -324,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`sousfamille_type` (
   INDEX `fk_sousfamille_type_fammille_type1_idx` (`fammille_type_idFammille_Type` ASC),
   CONSTRAINT `fk_sousfamille_type_fammille_type1`
     FOREIGN KEY (`fammille_type_idFammille_Type`)
-    REFERENCES `safetyglass`.`fammille_type` (`idFammille_Type`)
+    REFERENCES `safetyglass_db`.`fammille_type` (`idFammille_Type`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -332,9 +325,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`type`
+-- Table `safetyglass_db`.`type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`type` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`type` (
   `idType` INT(10) NOT NULL,
   `nomType` VARCHAR(45) NULL DEFAULT NULL,
   `epType` DOUBLE NULL DEFAULT NULL,
@@ -346,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `safetyglass`.`type` (
   INDEX `fk_type_sousfamille_type1_idx` (`sousfamille_type_idSousFamille_Type` ASC),
   CONSTRAINT `fk_type_sousfamille_type1`
     FOREIGN KEY (`sousfamille_type_idSousFamille_Type`)
-    REFERENCES `safetyglass`.`sousfamille_type` (`idSousFamille_Type`)
+    REFERENCES `safetyglass_db`.`sousfamille_type` (`idSousFamille_Type`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -354,9 +347,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `safetyglass`.`typedefautagc`
+-- Table `safetyglass_db`.`typedefautagc`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `safetyglass`.`typedefautagc` (
+CREATE TABLE IF NOT EXISTS `safetyglass_db`.`typedefautagc` (
   `idTypeDefautAGC` VARCHAR(1) NOT NULL,
   `descriptionTypeDefaut` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTypeDefautAGC`),

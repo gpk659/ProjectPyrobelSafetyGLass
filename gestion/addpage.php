@@ -9,29 +9,75 @@
     session_start();
     include 'secure.php';
     require "../dbConnect.php";
+  //  require "inc.requestsAdd.php";
 
-    $sqlEmp="SELECT idEmplacementUsine, nomEmplacement FROM mydb.emplacementusine";
-    $listEmpAdd = $db->query($sqlEmp);
-    /**
-     * sous famille liste
-     */
-    $sqlSousFamille="SELECT idSousFamille_Type, nomSousFamilleType FROM db_project_pyrobel.sousfamille_type;";
-    $querySousFamille=$db->query($sqlSousFamille);
-    /**
-     * Usine
-     */
-    $sqlUsine="SELECT idUsine, nomUsine FROM db_project_pyrobel.usine;";
-    $queryUsine=$db->query($sqlUsine);
-    /**
-     * Zone
-     */
-    $sqlZone="SELECT idZone, description FROM db_project_pyrobel.zone;";
-    $queryZone=$db->query($sqlZone);
-    /**
-     * Rack
-     */
-    $sqlRack="SELECT idRack, description  FROM db_project_pyrobel.rack;";
-    $queryRack=$db->query($sqlRack);
+
+    function addItem($addWord){
+      require "../dbConnect.php";
+
+      /* emplacement  */
+      $sqlEmp = "SELECT idEmplacement, description
+                 FROM safetyglass_db.emplacement";
+      $listEmpAdd = $db->query($sqlEmp);
+
+      // sous famille liste
+      $sqlSousFamille = "SELECT idSousFamille_Type, nomSousFamilleType
+                         FROM safetyglass_db.sousfamille_type";
+
+      // Usine
+      $sqlUsine = "SELECT idUsine, nomUsine
+                   FROM safetyglass_db.usine";
+      $queryUsine = $db->query($sqlUsine);
+
+      // Zone
+      $sqlZone = "SELECT idZone, description
+                  FROM safetyglass_db.zone";
+      $queryZone = $db->query($sqlZone);
+
+      // Rack
+      $sqlRack = "SELECT idRack, description
+                  FROM safetyglass_db.rack";
+      $queryRack = $db->query($sqlRack);
+
+/*  foreach ($querySousFamille as $famille){
+      echo "<option name='sousFamille' value='".$famille['idSousFamille_Type']."'>".$famille['nomSousFamilleType']."</option>";
+    }
+    */
+
+      switch ($addWord) {
+        case "sousfamille":
+            echo "<select name='sousFamille' class='custom-select' size='1' >";
+              foreach ($querySousFamille as $famille){
+                echo "<option name='sousFamille' value='".$famille['idSousFamille_Type']."'>".$famille['nomSousFamilleType']."</option>";
+              }
+            echo "</select>";
+            break;
+        case "zone":
+            echo "<select class='custom-select' name='listZone' size='1'>";
+              foreach ($queryZone as $item){
+                echo "<option name='zone' value='".$item['idZone']."'>".$item['description']."</option>";
+              }
+            echo "</select>";
+            break;
+        case "usine":
+            echo "<select class='custom-select' name='usine' size='1'>";
+              foreach ($queryUsine as $item){
+                echo "<option name='usine' value='".$item['idUsine']."'>".$item['nomUsine']."</option>";
+              }
+            echo "</select>";
+            break;
+        case "rack":
+            echo "<select class='custom-select' name='rack' size='1'>";
+              foreach ($queryRack as $item){
+                echo "<option name='rack' value='".$item['idRack']."'>".$item['description']."</option>";
+              }
+            echo "</select>";
+            break;
+        default:
+            echo "default value, fucking doesn't work!";
+    }
+    }
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -39,20 +85,19 @@
 <html lang="fr">
 <?php include 'head.inc.php'; ?>
 <body>
-<?php /* print_r($_SESSION); */
-    include_once("menu.php");
-?>
+<?php /* print_r($_SESSION); */ include_once("menu.php"); ?>
 
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <main>
+  <hr />
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'ajouter_user')">Ajout user</button>
-        <button class="tablinks" onclick="openCity(event, 'addType')">Ajout type</button>
-        <button class="tablinks" onclick="openCity(event, 'addRack')">Ajout rack</button>
-        <button class="tablinks" onclick="openCity(event, 'addEmp')">Ajout emplacement</button>
+        <button class="tablinks" onclick="openCity(event, 'addUser')"> Ajout User </button>
+        <button class="tablinks" onclick="openCity(event, 'addType')"> Ajout Type </button>
+        <button class="tablinks" onclick="openCity(event, 'addRack')"> Ajout Rack </button>
+        <button class="tablinks" onclick="openCity(event, 'addEmp')"> Ajout Emplacement </button>
     </div>
 
-    <div id="ajouter_user" class="tabcontent">
+    <div id="addUser" class="tabcontent">
         <form action="add/addUser.php" method="post">
             <fieldset>
                 <!-- Menu ajout user -->
@@ -81,7 +126,6 @@
             </fieldset>
         </form>
     </div>
-
     <div id="addType" class="tabcontent">
         <form action="add/addType.php" method="post">
             <fieldset>
@@ -114,13 +158,7 @@
                 <div class="form-group row"><!-- Liste -option- type sous famille -->
                     <label class="col-sm-2 col-form-label">Nom sous famille :</label>
                     <div class="col-sm-10">
-                    <?php
-                        echo "<select name='sousFamille' class='custom-select' size='1'>";
-                            foreach ($querySousFamille as $item){
-                                echo "<option name='sousFamille' value='".$item['idSousFamille_Type']."'>".$item['nomSousFamilleType']."</option>";
-                            }
-                        echo "</select>";
-                    ?>
+                      <?php addItem('sousfamille'); ?>
                     </div>
                 </div>
                 <div class="boutonsubmit">
@@ -180,13 +218,7 @@
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">Zone :</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name='listZone'>
-                        <?php
-                        foreach ($queryZone as $item){
-                            echo "<option name='zone' value='".$item['idZone']."'>".$item['description']."</option>";
-                        }
-                        ?>
-                        </select>
+                        <?php addItem('zone'); ?>
                     </div>
                 </div>
                 <div class="boutonsubmit">
@@ -209,49 +241,31 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Largeur pieds :</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="largeur" required>
+                        <input class="form-control" type="number" name="largeur" min='0' required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Poids max :</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="poids" required>
+                        <input class="form-control" type="number" name="poids" min='0' required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Usine :</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="usine" size="1">
-                            <?php
-                                foreach ($queryUsine as $item){
-                                    echo "<option name='usine' value='".$item['idUsine']."'>".$item['nomUsine']."</option>";
-                                }
-                            ?>
-                        </select>
+                      <?php addItem('usine'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Zone :</label>
                     <div class="col-sm-10">
-                            <select class="form-control" name="zone" size="1">
-                                <?php
-                                foreach ($queryZone as $itemzone){
-                                    echo "<option name='zone' value='".$itemzone['idZone']."'>".$itemezone['description']."</option>";
-                                }
-                                ?>
-                            </select>
+                    <?php addItem('zone'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Rack :</label>
                     <div class="col-sm-10">
-                            <select class="form-control" name="rack" size="1">
-                                <?php
-                                foreach ($queryRack as $item){
-                                    echo "<option name='rack' value='".$item['idRack']."'>".$item['description']."</option>";
-                                }
-                                ?>
-                            </select>
+                    <?php addItem('rack'); ?>
                     </div>
                 </div>
                 <div class="boutonsubmit">
@@ -261,25 +275,10 @@
         </form>
     </div>
 </main>
-<script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
+
 
 <footer>
     <span class="credit">v. 0.1 - © P. G.</span>
 </footer>
 </body>
 </html>
-

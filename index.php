@@ -39,7 +39,7 @@ if($_POST) //On check le mot de passe
         //$message = '<p>Bienvenue '.$data['username'].',vous êtes maintenant connecté!</p>';
         try {
           // insertion date, heure de la dernier Connexion
-          $lastTimeLogin = date('h:i:s, j-m-y');
+          $lastTimeLogin = date('h:i:s-j/m/y');
 
           $sqlUpdate="UPDATE `safetyglass_db`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
 
@@ -47,7 +47,7 @@ if($_POST) //On check le mot de passe
           $stmt->execute();
         }catch(PDOException $e){
           echo $sql . "<br>" . $e->getMessage();
-        }  
+        }
         //redirection vers la page d'acceuil
         header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
         exit();
