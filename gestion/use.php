@@ -14,7 +14,7 @@ session_start();
 <?php include 'head.inc.php'; ?>
 <body>
 <?php /* print_r($_SESSION); */
-include_once ("menu.php");
+  include_once ("menu.php");
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 
@@ -47,7 +47,6 @@ include_once ("menu.php");
             <div class="form-group">
                 <label for="largeurchute">Y1 :</label><input class="form-control" id="largeurchute" type="number" name="largeurChute" min="1" max="2250" step="1" placeholder="valeur en mm" required>
             </div>
-
             <div class="form-group">
                 <label>Commentaire :</label>
                 <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..."></textarea>
@@ -62,7 +61,6 @@ include_once ("menu.php");
             </div>
         </fieldset>
     </form>
-
 </main>
 <footer>
     <span class="credit">v. 0.1 - © P. G.</span>

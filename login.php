@@ -30,7 +30,7 @@ else //On check le mot de passe
     {
         $_SESSION['pseudo'] = $data['userName'];
         $_SESSION['id'] = $data['idUser'];
-        $message = '<p>Bienvenue '.$data['userName'].', 
+        $message = '<p>Bienvenue '.$data['userName'].',
 			vous êtes maintenant connecté!</p>';
 
         header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
@@ -38,10 +38,10 @@ else //On check le mot de passe
     }
     else if($data['password'] != $_POST['password']) // Acces pas OK !
     {
-        $message = '<p>Une erreur s\'est produite 
-	    pendant votre identification.<br /> Le mot de passe ou le pseudo 
+        $message = '<p>Une erreur s\'est produite
+	    pendant votre identification.<br /> Le mot de passe ou le pseudo
             entré n\'est pas correcte.
-	    <br /><br />Cliquez <a href="index.php">ici</a> 
+	    <br /><br />Cliquez <a href="index.php">ici</a>
 	    pour revenir à la page d accueil</p>';
         echo "<script>alert('Mot de passe et/ou pseudo incorrect')</script>";
         header('Refresh: 5; Location: http://localhost/SafetyGlassProject/index.php');

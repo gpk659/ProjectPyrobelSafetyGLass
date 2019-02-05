@@ -99,23 +99,23 @@
 
     <div id="addUser" class="tabcontent">
         <form action="add/addUser.php" method="post">
-            <fieldset>
+            <fieldset class="form_add">
                 <!-- Menu ajout user -->
                 <legend>Ajouter un utilisateur</legend>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nom utilisateur : </label>
+                    <label class="col-sm-2 col-form-label control-label">Nom utilisateur</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="text" name="userName" placeholder="Nom Utilisateur" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Mot de passe :</label>
+                    <label class="col-sm-2 col-form-label control-label">Mot de passe</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Confirmation mot de passe :</label>
+                    <label class="col-sm-2 col-form-label control-label">Confirmation mot de passe</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="password" name="password_conf" placeholder=" Confirmation Mot de passe" required>
                     </div>
@@ -128,7 +128,7 @@
     </div>
     <div id="addType" class="tabcontent">
         <form action="add/addType.php" method="post">
-            <fieldset>
+            <fieldset class="form_add">
                 <!-- Menu ajout type -->
                 <legend>Ajouter un type</legend>
                 <div class="form-group row">
@@ -169,7 +169,7 @@
     </div>
     <div id="addRack" class="tabcontent">
         <form action="add/addRack.php" method="post">
-            <fieldset>
+            <fieldset class="form_add">
                 <!-- Menu ajout rack -->
                 <legend>Ajouter un rack</legend>
                 <div  class="form-group row">
@@ -229,7 +229,7 @@
     </div>
     <div id="addEmp" class="tabcontent">
         <form action="add/addEmp.php" method="post">
-            <fieldset>
+            <fieldset class="form_add">
                 <!-- Menu ajout emplacement usine -->
                 <legend>Ajouter emplacement usine</legend>
                 <div class="form-group row">

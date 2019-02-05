@@ -213,6 +213,7 @@ fieldset legend {
 .tab button.active {
     color: #1388f4;
     font-weight: bold;
+    text-decoration: underline;
 }
 
 /* Style the tab content */
@@ -248,4 +249,15 @@ fieldset legend {
 .buttonedit:hover{
     background-color: #4CAF50;
     color: white;
+}
+/* css fieldset add form*/
+
+.form_add{
+  font-weight: bold;
+}
+
+/* css print button */
+
+#printbutton, #printbutton_section{
+  display: inline-block;
 }

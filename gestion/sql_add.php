@@ -19,7 +19,7 @@ $placement=$_GET['positionRack'];
 
 echo "<p>$num</p><p>$hauteur</p><p>$largueur</p><p>$lot</p><p>$type</p><p>$date</p><p>$placement</p>";
 
-$insertloss="INSERT INTO mydb.chute (nomChute, hauteur, largeur, numLot, type_idType, dateChute, fk_placement) 
+$insertloss="INSERT INTO mydb.chute (nomChute, hauteur, largeur, numLot, type_idType, dateChute, fk_placement)
 
 
 VALUES ('".$num."','".$hauteur."','".$largueur."','".$lot."','".$type."','".$date."','".$placement."')";

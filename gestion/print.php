@@ -9,15 +9,13 @@ session_start();
 require '../dbConnect.php';
 include 'secure.php';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="fr">
 <?php include 'head.inc.php'; ?>
 <body>
 <?php /* print_r($_SESSION); */ include_once ("menu.php"); ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <main>
-
     <div id="addUser" class="tabcontentPrint">
         <form method="get" action="print.php" >
             <fieldset>
@@ -51,7 +49,6 @@ include 'secure.php';
     <h4 class="listechute">Etiquette</h4>
 
     <?php
-
         if(isset($_GET['hauteur']) || isset($_GET['rack'])) {
             $hauteur = $_GET['hauteur'];
             $largeur = $_GET['largeur'];
@@ -59,15 +56,15 @@ include 'secure.php';
             $typechute = $_GET['stype'];
 
             $sql = "SELECT nomChute, hauteur, largeur, numLot, dateChute, numRack, nomEmplacement, nomTypeChute, nomSousTypeChute, positionEmplacement, idSousTypeChute
-               FROM mydb.placement as p, 
-                     mydb.emplacement as e, 
-                     mydb.rack as r, 
-                     mydb.emplacementUsine as eu, 
+               FROM mydb.placement as p,
+                     mydb.emplacement as e,
+                     mydb.rack as r,
+                     mydb.emplacementUsine as eu,
                      mydb.chute as c,
                      mydb.type as t,
                      mydb.soustypechute as stc,
                      mydb.typechute as tc
-                    
+
                 where  p.emplacement_idEmplacement = e.idEmplacement
                    and p.rack_idRack = r.idRack
                    and p.emplacementusine_idEmplacementUsine = eu.idEmplacementUsine

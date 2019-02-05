@@ -1,13 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Grégory
- * Date: 04-09-18
- * Time: 16:13
- */
-session_start();
-include 'secure.php';
-include_once 'newRequests.php';
+  /**
+   * Created by PhpStorm.
+   * User: Grégory
+   * Date: 04-09-18
+   * Time: 16:13
+   */
+  session_start();
+  include 'secure.php';
+  include_once 'newRequests.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -15,12 +15,12 @@ include_once 'newRequests.php';
 <?php include 'head.inc.php'; ?>
 <body>
 <?php /* print_r($_SESSION); */
-include_once ("menu.php");
+  include_once ("menu.php");
 ?>
 
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <main>
-    <form id="formnewloss" action="add.php" method="get">
+    <form id="formnewloss" action="sql_add.php" method="get">
         <fieldset>
             <legend>Ajouter une nouvelle chute</legend>
            <!-- <div>
@@ -28,15 +28,15 @@ include_once ("menu.php");
                 <input type="text" id="num" name="numChute" required>
             </div> -->
             <div class="form-group">
-                <label for="hauteurchute">Hauteur :</label>
-                <input class="form-control" id="hauteurchute" type="number" name="hauteurChute" min="1" max="3210" step="1" placeholder="valeur en mm" required>
+                <label for="hauteurcChute">Hauteur :</label>
+                <input class="form-control" id="hauteurchute" type="number" name="hauteurChute" min="1" max="3210" step="1" placeholder="Valeur en mm" required>
             </div>
             <div class="form-group">
-                <label for="largeurchute">Largeur :</label><input class="form-control" id="largeurchute" type="number" name="largeurChute" min="1" max="2250" step="1" placeholder="valeur en mm" required>
+                <label for="largeurChute">Largeur :</label><input class="form-control" id="largeurchute" type="number" name="largeurChute" min="1" max="2250" step="1" placeholder="Valeur en mm" required>
             </div>
             <div class="form-group">
                 <label for="typechute">Type de chute :</label>
-               <?php /*$include 'typeChute.php';$ */?>
+               <?php /* $include 'typeChute.php';$ */?>
             </div>
             <div class="form-group">
                 <label for="numlot">Numéro du lot : </label>
@@ -66,9 +66,7 @@ include_once ("menu.php");
             </div>-->
             <div class="boutonsubmit">
                 <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-            <div>
-                <div id="printbutton" class="btn btn-primary">Imprimer</div>
+                <button type="button" id="printbutton" class="btn btn-primary">Imprimer</button>
             </div>
         </fieldset>
     </form>
@@ -93,9 +91,7 @@ include_once ("menu.php");
                     }
                 }
             });
-
         });
-
     });
 </script>
 

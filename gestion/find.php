@@ -14,7 +14,7 @@ include 'secure.php';
 <?php include 'head.inc.php'; ?>
 <body>
 <?php /* print_r($_SESSION); */
-include_once ("menu.php");
+  include_once ("menu.php");
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <main>
@@ -81,15 +81,15 @@ include_once ("menu.php");
             $typechute = $_GET['stype'];
 
             $sql = "SELECT nomChute, hauteur, largeur, numLot, dateChute, numRack, nomEmplacement, nomTypeChute, nomSousTypeChute, positionEmplacement, idSousTypeChute
-               FROM mydb.placement as p, 
-                     mydb.emplacement as e, 
-                     mydb.rack as r, 
-                     mydb.emplacementUsine as eu, 
+               FROM mydb.placement as p,
+                     mydb.emplacement as e,
+                     mydb.rack as r,
+                     mydb.emplacementUsine as eu,
                      mydb.chute as c,
                      mydb.type as t,
                      mydb.soustypechute as stc,
                      mydb.typechute as tc
-                    
+
                 where  p.emplacement_idEmplacement = e.idEmplacement
                    and p.rack_idRack = r.idRack
                    and p.emplacementusine_idEmplacementUsine = eu.idEmplacementUsine
