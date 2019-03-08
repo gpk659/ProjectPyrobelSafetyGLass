@@ -17,7 +17,7 @@ if(empty($_POST['username']) && empty($_POST['password'])){
     $password = $_POST['password'];
 
     try{
-        $sqlAddUser = "INSERT INTO `db_project_pyrobel`.`user` (`username`, `password`) 
+        $sqlAddUser = "INSERT INTO safetyglass_db.user (`name`, `password`) 
                        VALUES ('$username', '$password')";
 
         $insertUser = $db->query($sqlAddUser);

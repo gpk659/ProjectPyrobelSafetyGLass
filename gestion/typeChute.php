@@ -8,7 +8,7 @@
 require '../dbConnect.php';
 /* requete sql pour afficher les types de chutes */
 
-$sql="SELECT idTypeChute, nomTypeChute FROM mydb.typechute";
+$sql="SELECT idType, nomType FROM safetyglass_db.type";
 
 // SQL pour les types
 $resulttype=$db->query($sql);
@@ -21,9 +21,11 @@ $resulttype=$db->query($sql);
     echo $row['nomTypeChute']. "\t </p>";*/
     //$group=$row['nomTypeChute'];
 
-    $sqlstype="SELECT idSousTypeChute, CONCAT (nomTypeChute,' - ',nomSousTypeChute) as nomStype
-    FROM mydb.soustypechute INNER JOIN mydb.typechute
+    $sqlstfamille="SELECT idSousFamille_Type, CONCAT (nomType,' - ',nomSousFamilleType) as nomStype
+    FROM safetyglass_db.sousfamille_type INNER JOIN safetyglass_db.type
     ON idTypeChute = fk_typeChute";
+
+    $sqlstype="SELECT idFammille_Type, nomFammille_Type FROM safetyglass_db.fammille_type;";
     $resultsoustype=$db->query($sqlstype);
 /*
     echo " <label for=\"typeChoice".$row['idTypeChute']."\">".$row['nomTypeChute']."</label>
@@ -32,7 +34,7 @@ $resulttype=$db->query($sql);
     echo "<select class=\"form-control\" id='typechute' name='stype' size='1'>
             <option name='sousType' value='' disabled selected hidden>Selectionner un type...</option>";
     foreach ($resultsoustype as $item){
-        echo " <option name='sousType' value=".$item['idSousTypeChute']." id=".$item['idSousTypeChute'].">".$item['nomStype']."</option>";
+        echo " <option name='sousType' value=".$item['idFammille_Type']." id=".$item['idFammille_Type'].">".$item['nomFammille_Type']."</option>";
     }
     echo "</select>";
 //}

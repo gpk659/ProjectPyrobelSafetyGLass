@@ -7,16 +7,20 @@
  */
 session_start();
 include 'secure.php';
+include_once 'newRequests.php';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="fr">
-<?php include 'head.inc.php'; ?>
+<?php include 'head.inc.php';
+ ?>
 <body>
 <?php /* print_r($_SESSION); */
   include_once ("menu.php");
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
+<hr />
 <main>
     <form method="get" action="find.php" >
         <fieldset>
@@ -32,14 +36,11 @@ include 'secure.php';
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <?php elementNewLoss('rack');  ?>
+                </div>
             <div class="form-group">
-                <label class="labelchute">Rack : </label>
-
-                <input class="form-control" type="text" name="rack" placeholder="numéro rack">
-            </div>
-            <div class="form-group">
-                <label class="labelchute">Type chute :</label>
-                <?php include 'typeChute.php'; ?>
+                <?php elementNewLoss('typeChute');  ?>
             </div>
             <div class="boutonsubmit">
                 <input type="submit" class="btn btn-primary" value="Rechercher">

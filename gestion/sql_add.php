@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Grégory
@@ -9,20 +8,25 @@
 
 require '../dbConnect.php';
 
-$num=$_GET['numChute'];
 $hauteur=$_GET['hauteurChute'];
-$largueur=$_GET['largeurChute'];
-$lot=$_GET['numLot'];
+$largeur=$_GET['largeurChute'];
 $type=$_GET['stype'];
-$date=date("Y-m-d");
-$placement=$_GET['positionRack'];
+$day=date("Y-m-d");
+$time=date("H:i:s");
+$placement=$_GET['emp'];
+$operateur=$_GET['op'];
+$plateau=$_GET['plateau'];
+
+
+
+$comment=$_GET['comment'];
 
 echo "<p>$num</p><p>$hauteur</p><p>$largueur</p><p>$lot</p><p>$type</p><p>$date</p><p>$placement</p>";
 
-$insertloss="INSERT INTO mydb.chute (nomChute, hauteur, largeur, numLot, type_idType, dateChute, fk_placement)
+$insertloss="INSERT INTO safetyglass_db.listchutte (largeur, hauteur, type_idType, dateMiseStock, heureMiseStock,plateau_idPlateau,listeoperateur_idOperateur,emplacement_idEmplacement);
 
 
-VALUES ('".$num."','".$hauteur."','".$largueur."','".$lot."','".$type."','".$date."','".$placement."')";
+VALUES ('".$largeur."','".$hauteur."','".$type."','".$day."','".$time."','".$date."','".$plateau."','".$operateur."','".$placement."','".$comment."')";
 
 
 $addloss=$db->query($insertloss);

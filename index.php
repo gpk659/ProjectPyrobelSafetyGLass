@@ -17,9 +17,6 @@ $sql='SELECT name FROM safetyglass_db.user';
 
 $listUser=$db->query($sql);
 
-if(isset($_SESSION["pseudo"])){
-    header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
-}
 /*if (empty($_POST['pseudo']) || empty($_POST['password']) ) //Oublie d'un champ
 {
     $message = '<p>une erreur s\'est produite pendant votre identification.

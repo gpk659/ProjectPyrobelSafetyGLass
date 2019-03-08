@@ -19,6 +19,7 @@ include_once "menu.php";
 ?>
 
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
+<hr />
 <form method="get" action="deplacement.php" >
     <fieldset>
         <legend>Recherche</legend>
@@ -82,16 +83,16 @@ include_once "menu.php";
         $typechute = $_GET['stype'];
 
         $sql = "SELECT nomChute, hauteur, largeur, numLot, dateChute, numRack, nomEmplacement, nomTypeChute, nomSousTypeChute, positionEmplacement, idSousTypeChute
-                   FROM mydb.placement as p, 
-                         mydb.emplacement as e, 
-                         mydb.rack as r, 
-                         mydb.emplacementUsine as eu, 
+                   FROM mydb.placement as p,
+                         mydb.emplacement as e,
+                         mydb.rack as r,
+                         mydb.emplacementUsine as eu,
                          mydb.chute as c,
                          mydb.type as t,
                          mydb.soustypechute as stc,
                          mydb.typechute as tc
-                        
-                    where  p.emplacement_idEmplacement = e.idEmplacement
+
+                    WHERE  p.emplacement_idEmplacement = e.idEmplacement
                        and p.rack_idRack = r.idRack
                        and p.emplacementusine_idEmplacementUsine = eu.idEmplacementUsine
                        and c.fk_placement = p.idPlacement
@@ -99,7 +100,7 @@ include_once "menu.php";
                        and t.sousTypeChute_idSousTypeChute = stc.idSousTypeChute
                        and t.typeChute_idTypeChute = tc.idTypeChute
                        and ((numRack = '".$rack."') or (hauteur = '".$hauteur."') or (largeur='".$largeur."') or (idSousTypeChute='".$typechute."'))
-                    order by dateChute";
+                    ORDER BY dateChute";
 
         $stmt=$db->prepare($sql);
         $stmt->execute();
@@ -149,7 +150,6 @@ include_once "menu.php";
 
         <?php
         }
-
     }
 
 ?>

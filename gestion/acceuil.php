@@ -18,6 +18,7 @@ include 'secure.php';
 include_once "menu.php";
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
+<hr />
 
 
 

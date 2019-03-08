@@ -3,10 +3,11 @@
         <ul>
             <li class="nav-li active-nav"><a href='acceuil.php'>Acceuil</a></li>
             <li class="nav-li"><a href='newloss.php'>Ajouter une nouvelle chute</a></li>
-            <li class="nav-li"><a href='find.php'>Chercher une chute</a></li>
+            <li class="nav-li"><a href='find.php'>Liste des chutes</a></li>
             <li class="nav-li"><a href='use.php'>Utiliser une chute</a></li>
             <li class="nav-li"><a href='deplacement.php'>Déplacement</a></li>
-            <li class="nav-li"><a href='production.php'>Production</a></li>
+            <li class="nav-li"><a href='listvolume.php'>Volume à couper</a></li>
+            <!-- <li class="nav-li"><a href='production.php'>Production</a></li> -->
             <?php
                 if($_SESSION['pseudo'] == "admin"){ echo "<li class='nav-li'><a href='addpage.php'>Ajouter</a></li>"; }
             ?>

@@ -19,14 +19,11 @@
 ?>
 
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
+<hr />
 <main>
     <form id="formnewloss" action="sql_add.php" method="get">
         <fieldset>
             <legend>Ajouter une nouvelle chute</legend>
-           <!-- <div>
-                <label>Numéro chute :</label>
-                <input type="text" id="num" name="numChute" required>
-            </div> -->
             <div class="form-group">
                 <label for="hauteurcChute">Hauteur :</label>
                 <input class="form-control" id="hauteurchute" type="number" name="hauteurChute" min="1" max="3210" step="1" placeholder="Valeur en mm" required>
@@ -43,8 +40,7 @@
                 <input class="form-control" class="form-control-text" id="numlot" type="text" id="lot" name="numLot" required>
             </div>
             <div class="form-group">
-                <label for="numrack">Numéro du rack : </label>
-                <input id="numrack"  class="form-control" type="text" id="rack" name="rackChute" required>
+                <?php elementNewLoss('rack');  ?>
             </div>
             <div class="form-group">
                 <?php elementNewLoss('emp');  ?>

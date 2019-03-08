@@ -189,6 +189,7 @@ fieldset legend {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    float: left;
 }
 
 /* Style the buttons inside the tab */
@@ -260,4 +261,29 @@ fieldset legend {
 
 #printbutton, #printbutton_section{
   display: inline-block;
+}
+
+/* css page "volume à couper" */
+
+.buttonvol{
+  color:#0080ff;
+}
+.buttonvol:hover{
+  text-decoration: underline;
+}
+
+.tab, .statustable {display: inline-block;}
+
+.statusvol {
+  width: 500px;
+  float: right;
+}
+.statustable td{
+  padding: 8px;
+  text-align: left;
+}
+.stylestatus{
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
 }

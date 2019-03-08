@@ -17,7 +17,7 @@ session_start();
   include_once ("menu.php");
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
-
+<hr />
 <main>
     <form action="add.php" method="get">
         <fieldset>
