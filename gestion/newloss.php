@@ -36,10 +36,6 @@
                <?php /* $include 'typeChute.php';$ */?>
             </div>
             <div class="form-group">
-                <label for="numlot">Numéro du lot : </label>
-                <input class="form-control" class="form-control-text" id="numlot" type="text" id="lot" name="numLot" required>
-            </div>
-            <div class="form-group">
                 <?php elementNewLoss('rack');  ?>
             </div>
             <div class="form-group">

@@ -57,6 +57,6 @@ function addItem($addWord){
         echo "Your favorite color is green!";
         break;
     default:
-        echo "default value, fucking doesn't work!";
+        echo "default value, doesn't work!";
 }
 }

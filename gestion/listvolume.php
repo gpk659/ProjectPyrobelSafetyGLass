@@ -1,18 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Grégory
- * Date: 04-09-18
- * Time: 16:15
- */
-session_start();
-include 'secure.php';
-require "../dbConnect.php";
-include_once 'newRequests.php';
-
-
-
+  /**
+   * Created by PhpStorm.
+   * User: Grégory
+   * Date: 04-09-18
+   * Time: 16:15
+   */
+  session_start();
+  include 'secure.php';
+  require "../dbConnect.php";
+  include_once 'newRequests.php';
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="fr">
@@ -114,11 +112,11 @@ include_once "menu.php";
       </tbody>
     </table>
   </div>
-  <h4 class="listchuttex">Liste volumes à couper</h4>
-  <table class="table table-striped">
+  <h4 id="titrevol" class="listchuttex">Liste volumes à couper</h4>
+  <table id="tableVolToDo" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
-        <th scope="col">Num Commande</th>
+        <th>Num Commande</th>
         <th>Qté</th>
         <th>Date Livraison</th>
         <th>Type Verre</th>
@@ -133,17 +131,19 @@ include_once "menu.php";
     </thead>
     <tbody>
       <?php
-          $sqllistvol = "SELECT numCom,lettre,x,nnn,datelivraison,typeverre,largeur,hauteur,faconnage,commentaire,chutesug
-                         FROM safetyglass_db.listevolume;";
+          $sqllistvol = "SELECT idListeVolume,numCom,lettre,x,nnn,datelivraison,typeverre,largeur,hauteur,faconnage,commentaire,chutesug
+                         FROM safetyglass_db.listevolume
+                         ORDER BY numCom";
           $listVol = $db->query($sqllistvol);
 
               foreach ($listVol as $row) {
 
               $qte=$row['nnn'] ."/". $row['x'];
               $numcom=$row['numCom'] ." ". $row['lettre'];
+              $idVol=$row['idListeVolume'];
 
                       echo "<tr class='lignetab'>
-                              <td scope=\"row\">$numcom</td>
+                              <td id=$idVol>$numcom</td>
                               <td>$qte</td>
                               <td>" . $row['datelivraison'] . "</td>
                               <td>" . $row['typeverre'] . "</td>
@@ -152,8 +152,8 @@ include_once "menu.php";
                               <td>" . $row['faconnage'] . "</td>
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['chutesug'] . "</td>
-                              <td><a href='usevol.php'>Produire</a></td>
-                              <td><button class=\"buttonvol\" type=\"button\" name=\"button\" onclick=\"deleteVol('$numcom','$qte');\">Supprimer</button></td>
+                              <td><a href='usevol.php?idVol=".$idVol."'>Produire</a></td>
+                              <td><button class=\"buttonvol\" type=\"button\" name=\"button\" onclick=\"deleteVol('$numcom','$qte','$idVol');\">Supprimer</button></td>
                               </tr>";
                   }
                   /* Utiliser : call a php sql script to use it */
@@ -178,14 +178,6 @@ include_once "menu.php";
     </thead>
     <tbody>
       <?php
-      /**
-       * Created by PhpStorm.
-       * User: Grégory
-       * Date: 11-09-18
-       * Time: 17:51
-       */
-      require '../dbConnect.php';
-
           $sqllistvolbon = "SELECT numCom,lettre,largeur,hauteur,datefabrication, commentaire
                           FROM safetyglass_db.listevolumesbons;";
           $listVolbon = $db->query($sqllistvolbon);

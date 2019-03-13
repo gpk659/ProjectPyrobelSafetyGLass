@@ -3,14 +3,14 @@
 *
  */
 
- function deleteVol(numCom,qte) {
+ function deleteVol(numCom,qte,idVolparam) {
               console.log("Num commande: " + numCom +". Qté: "+ qte);
                var retVal = confirm("Voulez-vous vraiment supprimer le volume suivant : Num commande: "+ numCom +". Qté: "+ qte +" ?");
                if( retVal == true ) {
                   console.log("Suppression en cours...");
-                  window.location.replace("http://localhost/SafetyGlassProject/gestion/deleteVol.php");
+                  window.location.replace("http://localhost/SafetyGlassProject/gestion/deleteVol.php?idVol=" + idVolparam);
                   return true;
-               } else {
+               } else if(retVal == false) {
                   console.log("Suppression annulée");
                   return false;
                }
