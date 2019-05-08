@@ -1,60 +1,53 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Grégory
- * Date: 03-09-18
- * Time: 11:56
- */
-require 'dbConnect.php';
-session_start();
-//$_SESSION['pseudo'];
-//$_SESSION['id'];
-$message ='';
+  /**
+   * User: Grégory
+   * Date: 03-09-18
+   * Time: 11:56
+   */
+  require 'dbConnect.php';
+  session_start();
+  $message ='';
 
-if(isset($_SESSION["pseudo"])){header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');}
+  if(isset($_SESSION["pseudo"])){header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');}
 
-$sql='SELECT name FROM safetyglass_db.user';
+  $sql='SELECT name FROM safetyglass_db.user';
 
-$listUser=$db->query($sql);
+  $listUser=$db->query($sql);
 
-/*if (empty($_POST['pseudo']) || empty($_POST['password']) ) //Oublie d'un champ
-{
-    $message = '<p>une erreur s\'est produite pendant votre identification.
-	Vous devez remplir tous les champs</p>';
-}*/
-if($_POST) //On check le mot de passe
-{
-    $query=$db->prepare('SELECT iduser, name, password
-        FROM safetyglass_db.user WHERE name = :pseudo');
-    $query->bindValue(':pseudo',$_POST['pseudo'], PDO::PARAM_STR);
-    $query->execute();
-    $data=$query->fetch();
-    if ($data['password'] == $_POST['password']) // Acces OK !
-    {
-        $_SESSION['pseudo'] = $data['name'];
-        $_SESSION['id'] = $data['iduser'];
-        //$message = '<p>Bienvenue '.$data['username'].',vous êtes maintenant connecté!</p>';
-        try {
-          // insertion date, heure de la dernier Connexion
-          $lastTimeLogin = date('h:i:s-j/m/y');
+  if($_POST) //On check le mot de passe
+  {
+      $query=$db->prepare('SELECT iduser, name, password,nivdroit
+          FROM safetyglass_db.user WHERE name = :pseudo');
+      $query->bindValue(':pseudo',$_POST['pseudo'], PDO::PARAM_STR);
+      $query->execute();
+      $data=$query->fetch();
+      if ($data['password'] == $_POST['password']) /* Acces OK ! */ {
 
-          $sqlUpdate="UPDATE `safetyglass_db`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
+          $_SESSION['pseudo'] = $data['name'];
+          $_SESSION['id'] = $data['iduser'];
+          $_SESSION['droit']= $data['nivdroit'];
 
-          $stmt=$db->query($sqlUpdate);
-          $stmt->execute();
-        }catch(PDOException $e){
-          echo $sql . "<br>" . $e->getMessage();
-        }
-        //redirection vers la page d'acceuil
-        header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
-        exit();
-    }else if($data['password'] != $_POST['password']) // Acces pas OK !
-    {$message = '<p class="errorlogin">Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe entré n\'est pas correct.'; //message mdp incorrect
-    }else {$message = '<p class="errorlogin">error autre</p>';}
+          try {
+            // insertion date, heure de la dernier Connexion
+            $lastTimeLogin = date('h:i:s-j/m/y');
+            $sqlUpdate="UPDATE `safetyglass_db`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
+            $stmt=$db->query($sqlUpdate);
+            $stmt->execute();
+          }catch(PDOException $e){
+            echo $sql . "<br>" . $e->getMessage();
+          }
+          //redirection vers la page d'acceuil
+          header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');
+          exit();
 
-    $query->CloseCursor();
-}
-//echo $message;
+      }else if($data['password'] != $_POST['password']) /* Acces pas OK ! */ {
+        $message = '<p class="errorlogin">Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe entré n\'est pas correct !'; //message mdp incorrectt
+      }else {
+        $message = '<p class="errorlogin">Error!</p>';
+      }
+
+      $query->CloseCursor();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +57,7 @@ if($_POST) //On check le mot de passe
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="icon" type="IMG/png" href="IMG/icons/favicon.ico"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -96,18 +89,17 @@ if($_POST) //On check le mot de passe
 						Connexion
 					</span>
                 <span class="login100-form-avatar">
-						<img src="images/banner.png" alt="AVATAR">
+						<img src="IMG/banner.png" alt="AVATAR">
                 </span>
                 <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
                     <!--<input class="input100" type="text" name="pseudo">-->
                     <?php
                         echo "<select name='pseudo' class=\"input100\" size='1'>";
+                        echo "<option name='pseudo' value='' disabled selected hidden> Sélectionner un opérateur... </option>";
                             foreach ($listUser as $item){ echo "<option name='pseudo' value='".$item['name']."' id='".$item['idUser']."'>".$item['name']."</option>";}
                         echo "</select>";
                     ?>
-                    <!--<span class="focus-input100" data-placeholder="Username"></span>-->
                 </div>
-
                 <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
                     <input class="input100" type="password" name="password" required>
                     <span class="focus-input100" data-placeholder="Password"></span>
@@ -126,10 +118,8 @@ if($_POST) //On check le mot de passe
     </div>
 </div>
 <footer>
-    <span class="credit">v. 0.1 - © P. G.</span>
+    <span class="credit">V. 0.1 - © P. G.</span>
 </footer>
-
-<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

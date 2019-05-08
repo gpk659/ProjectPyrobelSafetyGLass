@@ -4,18 +4,17 @@
     padding-bottom: 1em;
     left: 0;
     bottom: 0;
-    position: fixed;
+
 }
 /* css message d'erreur login */
 .errorlogin {color:red; font-weight: bold;}
 
 #currentUser{
     margin: 1em;
-    right: -250px;
+    padding-left: 140px;
     text-transform: capitalize;
     position: relative;
 }
-
 form {
     /* Pour le centrer dans la page */
     margin: 0 auto;
@@ -82,29 +81,7 @@ button {
 
 /* css pour le tableau*/
 
-table{
-    border-collapse: collapse;
-    margin: 0 auto;
 
-}
-th{
-    padding: 6px;
-    text-align: center;
-    border-bottom: 1px solid black;
-}
-.lignetab:hover{
-    background-color: lightgreen;
-}
-td{
-    border: 1px solid #ddd;
-    background: white;
-    color: black;
-    text-align: center;
-    padding: 5px;
-}
- tbody tr:nth-child(odd){
-     background-color: lightgreen;
- }
 /* page de recherche */
 .edit{
     text-align: center;
@@ -189,7 +166,6 @@ fieldset legend {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    float: left;
 }
 
 /* Style the buttons inside the tab */
@@ -228,8 +204,19 @@ fieldset legend {
 }
 
 #modifrack{
-    width: 20%;
+    width: 200px;
     padding: 0.5em;
+    display: inline-block;
+}
+#modifrack select{
+  float: left;
+  width: 125px;
+}
+
+#modifrack a{
+  float: right;
+  width: 50px;
+  font-size: 27px;
 }
 
 /* css bouton edit */
@@ -265,14 +252,9 @@ fieldset legend {
 
 /* css page "volume à couper" */
 
-.buttonvol{
-  color:#0080ff;
+.buttonvol i{
+  color:red;
 }
-.buttonvol:hover{
-  text-decoration: underline;
-}
-
-.tab, .statustable {display: inline-block;}
 
 .statusvol {
   width: 500px;
@@ -286,4 +268,60 @@ fieldset legend {
   border-bottom: 1px solid #ddd;
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
+}
+
+/* usevol css */
+
+.useVolContainer{
+  display: inline-block; /* bloc div qui contient la div useVolinfo & useVolchutes */
+  width:100%;
+  height: 100%;
+}
+.useVolinfo{
+  float: left;
+  width: 20%;
+  padding: 10px;
+  margin: 10px;
+}
+.useVolinfo h5, .useVolchutes h5 {text-decoration: underline;}
+
+.useVolchutes{
+  float: left;
+   width: 70%;
+   padding: 10px;
+   margin: 5px;
+   border-left: 1px solid black;
+}
+.useVolchutes h3 {
+  text-decoration: underline;
+  text-transform: capitalize;
+}
+.useVolContainer span {
+  font-weight: bold;
+}
+.useVolContainer li{
+  list-style-type: circle;
+}
+
+#findtable tfoot input, #modiftable tfoot input, #usevoltable tfoot input  {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+
+    .danger {color: red; font-weight: bold;}
+
+
+#backUseVol {
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 2px;
+  color: #007bff;
+}
+
+#tableVolToDo thead input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
 }

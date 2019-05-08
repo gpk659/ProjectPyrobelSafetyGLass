@@ -10,7 +10,7 @@ require '../dbConnect.php';
 session_start();
 
 echo "<p>Rack actuel : ".$_SESSION['rack']."</p>";
-echo "<p>Nouveau rack : ".$_POST["nomRack"]."</p>";
+echo "<p>Nouveau rack : Rack Mistrello - M2</p>";
 
 
 ?> <a href="deplacement.php">Retour</a>

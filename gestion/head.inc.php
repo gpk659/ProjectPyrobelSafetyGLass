@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="../IMG/icons/favicon.ico"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -23,14 +23,21 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../CSS/jquery.dataTables.min.css" media="screen">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../CSS/util.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/main.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/menu.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../CSS/jquery.dataTables.min.css" media="screen">
+
     <!-- CSS Impression -->
     <link rel="stylesheet" type="text/css" href="../CSS/print.css" media="print">
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../JS/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../JS/jquery-3.3.1.js"></script>
+
     <script type="text/javascript" src="../JS/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../JS/myscript.js"></script>
     <script type="text/javascript" src="../JS/volscript.js"></script>

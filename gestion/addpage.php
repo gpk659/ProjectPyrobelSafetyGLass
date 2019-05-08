@@ -23,17 +23,17 @@
 <hr />
 <main>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'addUser')"> Ajout User </button>
+        <button class="tablinks" onclick="openCity(event, 'addUser')"> Ajout Opérateur </button>
         <button class="tablinks" onclick="openCity(event, 'addType')"> Ajout Type </button>
         <button class="tablinks" onclick="openCity(event, 'addRack')"> Ajout Rack </button>
         <button class="tablinks" onclick="openCity(event, 'addEmp')"> Ajout Emplacement </button>
     </div>
-    
+
     <div id="addUser" class="tabcontent">
         <form action="add/addUser.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout user -->
-                <legend>Ajouter un utilisateur</legend>
+                <legend>Ajouter Un Opérateur</legend>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label control-label">Nom utilisateur</label>
                     <div class="col-sm-10">
@@ -62,7 +62,7 @@
         <form action="add/addType.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout type -->
-                <legend>Ajouter un type</legend>
+                <legend>Ajouter Un Type</legend>
                 <div class="form-group row">
                     <label  class="col-sm-2 col-form-label">Nom Type</label>
                     <div class="col-sm-10">
@@ -103,7 +103,7 @@
         <form action="add/addRack.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout rack -->
-                <legend>Ajouter un rack</legend>
+                <legend>Ajouter Un Rack</legend>
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">Abréviation</label>
                     <div class="col-sm-10">
@@ -163,7 +163,7 @@
         <form action="add/addEmp.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout emplacement usine -->
-                <legend>Ajouter emplacement usine</legend>
+                <legend>Ajouter Emplacement Usine</legend>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Description emplacement</label>
                     <div class="col-sm-10">

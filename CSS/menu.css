@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
-
 div#nav-test {
     display: flex;
     justify-content: center;
@@ -75,6 +74,4 @@ a {text-decoration: none;}
     color: white;
 }
 
-.titleajout {
-padding: 1em;
-}
+.titleajout {padding: 1em;}

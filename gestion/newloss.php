@@ -32,24 +32,27 @@
                 <label for="largeurChute">Largeur :</label><input class="form-control" id="largeurchute" type="number" name="largeurChute" min="1" max="2250" step="1" placeholder="Valeur en mm" required>
             </div>
             <div class="form-group">
-                <label for="typechute">Type de chute :</label>
-               <?php /* $include 'typeChute.php';$ */?>
+               <?php elementNewLoss('SoustypeChute'); ?>
             </div>
             <div class="form-group">
                 <?php elementNewLoss('rack');  ?>
             </div>
-            <div class="form-group">
-                <?php elementNewLoss('emp');  ?>
-            </div>
-            <div class="form-group">
-                <?php elementNewLoss('op');  ?>
-            </div>
+<hr>
             <div class="form-group">
                 <?php elementNewLoss('plateau');  ?>
             </div>
+
+            <div>
+              <label for="">Nouveau plateau : </label>
+              <input type="text" class="form-control" name="numcadre" value="" placeholder="Num Cadre">
+              <input type="text" class="form-control" name="numPlateau" value="" placeholder="Num Plateau">
+              <input type="text" class="form-control" name="largeur" value="" placeholder="Largeur">
+              <input type="text" class="form-control" name="hauteur" value="" placeholder="Hauteur">
+            </div>
+            <hr>
             <div class="form-group">
                 <label>Commentaire :</label>
-                <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..."></textarea>
+                <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..." required></textarea>
             </div>
             <!-- dois se faire automatiquement -->
             <!--<div>

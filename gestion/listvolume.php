@@ -9,6 +9,46 @@
   include 'secure.php';
   require "../dbConnect.php";
   include_once 'newRequests.php';
+
+  $urgent="";
+  $jPlusUn="";
+  $jPlusDeux="";
+  $jPlusTrois="";
+  $jPlusPlus="";
+
+  $dateppp = date('Y-m-d',strtotime(date('Y-m-d') . "+3 days"));
+
+  function etatVolume($date){
+    global $urgent, $jPlusUn, $jPlusDeux,$jPlusTrois,$jPlusPlus, $dateppp;
+
+    if($date == date('Y-m-d')){
+    /*echo "Urgent JO";*/
+      $urgent++;
+    }else if ($date < date('Y-m-d')) {
+      $urgent++;
+    }else if($date == date('Y-m-d',strtotime(date('Y-m-d') . "+1 days"))){
+      //echo "J+1";
+      $jPlusUn++;
+    }else if($date == date('Y-m-d',strtotime(date('Y-m-d') . "+2 days"))){
+      //echo "J+2";
+      $jPlusDeux++;
+    }else if($date == date('Y-m-d',strtotime(date('Y-m-d') . "+3 days"))){
+      //echo "J+3";
+      $jPlusTrois++;
+    }else if($date > $dateppp){
+      //echo "J>3";
+      $jPlusPlus++;
+    }else{
+      echo "erreur<br />";
+    }
+  }
+
+    $sqlcount="SELECT datelivraison FROM safetyglass_db.listevolume;";
+    $nbvols = $db->query($sqlcount);
+
+    foreach ($nbvols as $key) {
+      etatVolume($key['datelivraison']);
+    }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -41,23 +81,19 @@ include_once "menu.php";
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Qté totale de volume identique (x)</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="number" name="quantite" placeholder="x" required>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Numéro de ce volume dans la série (nnn)</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="number" name="numvol" placeholder="nnn" required>
-        </div>
-      </div>
-      <div class="form-group row">
         <label class="col-sm-2 col-form-label">Lettre</label>
         <div class="col-sm-10">
             <input class="form-control" type="text" name="lettre" placeholder="Lettre" required>
         </div>
       </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Qté totale de volume identique (x)</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="number" name="quantite" placeholder="x" required>
+        </div>
+      </div>
+      <!-- ajouter automatiquement le nb de volumes identique avec leur numero  -->
+
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Largeur</label>
         <div class="col-sm-10">
@@ -73,13 +109,13 @@ include_once "menu.php";
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Façonnage</label>
         <div class="col-sm-10">
-            <input class="form-control" type="textarea" name="faconnage" placeholder="Façonnage">
+            <input class="form-control" type="textarea" name="faconnage" placeholder="Façonnage" required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Commentaire</label>
         <div class="col-sm-10">
-            <input class="form-control" type="textarea" name="comment" placeholder="Commentaire">
+            <input class="form-control" type="textarea" name="comment" placeholder="Commentaire" required>
         </div>
       </div>
 
@@ -102,31 +138,31 @@ include_once "menu.php";
           <td class="stylestatus">J+3</td>
           <td class="stylestatus">J>3</td>
         </tr><tr>
-          <td>Nb </td>
-          <td class="stylestatus">1</td>
-          <td class="stylestatus">2</td>
-          <td class="stylestatus">3</td>
-          <td class="stylestatus">4</td>
-          <td class="stylestatus">5</td>
+          <td>Nb volume(s) </td>
+          <td class="stylestatus danger"><?php echo $urgent; ?></td>
+          <td class="stylestatus"><?php echo $jPlusUn; ?></td>
+          <td class="stylestatus"><?php echo $jPlusDeux; ?></td>
+          <td class="stylestatus"><?php echo $jPlusTrois; ?></td>
+          <td class="stylestatus"><?php echo $jPlusPlus; ?></td>
         </tr>
       </tbody>
     </table>
   </div>
   <h4 id="titrevol" class="listchuttex">Liste volumes à couper</h4>
-  <table id="tableVolToDo" class="table table-striped table-bordered" style="width:100%">
+  <table id="tableVolToDo" class="display" style="width:100%">
     <thead>
       <tr>
         <th>Num Commande</th>
         <th>Qté</th>
         <th>Date Livraison</th>
-        <th>Type Verre</th>
+        <th id='office'>Type Verre</th>
         <th>Largeur</th>
         <th>Hauteur</th>
         <th>Façonnage</th>
         <th>Commentaire</th>
         <th>Chute(s) suggérée(s)</th>
-        <th></th>
-        <th></th>
+        <th>Produire</th>
+        <th>Supprimer</th>
       </tr>
     </thead>
     <tbody>
@@ -145,7 +181,7 @@ include_once "menu.php";
                       echo "<tr class='lignetab'>
                               <td id=$idVol>$numcom</td>
                               <td>$qte</td>
-                              <td>" . $row['datelivraison'] . "</td>
+                              <td>"; changeDate($row['datelivraison']);  echo "</td>
                               <td>" . $row['typeverre'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['hauteur'] . "</td>
@@ -153,7 +189,9 @@ include_once "menu.php";
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['chutesug'] . "</td>
                               <td><a href='usevol.php?idVol=".$idVol."'>Produire</a></td>
-                              <td><button class=\"buttonvol\" type=\"button\" name=\"button\" onclick=\"deleteVol('$numcom','$qte','$idVol');\">Supprimer</button></td>
+                              <td><button class=\"buttonvol\" type=\"button\" name=\"button\" onclick=\"deleteVol('$numcom','$qte','$idVol');\">
+                                    Supprimer
+                                  </button></td>
                               </tr>";
                   }
                   /* Utiliser : call a php sql script to use it */
@@ -161,6 +199,7 @@ include_once "menu.php";
 
       ?>
     </tbody>
+
   </table>
 </div>
 <div id="listVolBon" class="tabcontent"> <!-- Tableau des volumes faits -->
@@ -170,7 +209,7 @@ include_once "menu.php";
       <tr>
         <th scope="col">Num Commande</th>
         <th>Lettre</th>
-        <th>Date Livraison</th>
+        <th>Date Fabrication</th>
         <th>Largeur</th>
         <th>Hauteur</th>
         <th>Commentaire</th>

@@ -7,7 +7,10 @@
  */
 session_start();
 include 'secure.php';
+require '../dbConnect.php';
+include_once 'newRequests.php';
 $_SESSION['rack']="";
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -20,140 +23,86 @@ include_once "menu.php";
 
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <hr />
-<form method="get" action="deplacement.php" >
-    <fieldset>
-        <legend>Recherche</legend>
 
-        <label class="labelchute">Dimensions : </label>
-        <div class="form-row">
-            <div class="col">
-                <input class="form-control" type="number" name="hauteur" placeholder="hauteur chute">
-            </div>
-            <div class="col">
-                <input class="form-control" type="number" name="largeur" placeholder="largeur chute">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="labelchute">Rack : </label>
-            <input class="form-control" type="text" name="rack" placeholder="numéro rack">
-        </div>
-        <div class="form-group">
-            <label class="labelchute">Type chute :</label>
-            <?php include 'typeChute.php'; ?>
-        </div>
-        <div class="boutonsubmit">
-            <input type="submit" class="btn btn-primary" value="Rechercher">
-        </div>
-    </fieldset>
-</form>
 <h3 class="listechute">Modification</h3>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Chute</th>
-        <th scope="col">Hauteur</th>
-        <th scope="col">Largeur</th>
-        <th scope="col">Numéro du lot</th>
-        <th scope="col">Date</th>
-        <th scope="col">Position</th>
-        <th scope="col">Emplacement</th>
-        <th scope="col">Type</th>
-        <th scope="col">Sous type</th>
-        <th scope="col">Rack</th>
-        <th scope="col">Modif rack</th>
-
-
-    </tr>
-    </thead>
+<table id="modiftable" class="display" style="width:100%">
+  <thead>
+      <tr>
+          <th>Hauteur</th>
+          <th>Largeur</th>
+          <th>Date Mise en Stock</th>
+          <th>Commentaire</th>
+          <th>Position</th>
+          <th>Plateau</th>
+          <th>Emplacement</th>
+          <th>Modification Rack</th>
+      </tr>
+  </thead>
     <tbody>
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: Grégory
-     * Date: 11-09-18
-     * Time: 17:51
-     */
-    require '../dbConnect.php';
 
-    if(isset($_GET['hauteur']) || isset($_GET['rack'])) {
-        $hauteur = $_GET['hauteur'];
-        $largeur = $_GET['largeur'];
-        $rack = $_GET['rack'];
-        $typechute = $_GET['stype'];
 
-        $sql = "SELECT nomChute, hauteur, largeur, numLot, dateChute, numRack, nomEmplacement, nomTypeChute, nomSousTypeChute, positionEmplacement, idSousTypeChute
-                   FROM mydb.placement as p,
-                         mydb.emplacement as e,
-                         mydb.rack as r,
-                         mydb.emplacementUsine as eu,
-                         mydb.chute as c,
-                         mydb.type as t,
-                         mydb.soustypechute as stc,
-                         mydb.typechute as tc
+$sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
+                positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
+        FROM safetyglass_db.listechutte as listchutte,
+             safetyglass_db.emplacement as emp,
+             safetyglass_db.rack, safetyglass_db.plateau
+        where emplacement_idEmplacement = emp.idEmplacement
+              and rack_idRack = idRack
+              and plateau_idPlateau = idPlateau;";
 
-                    WHERE  p.emplacement_idEmplacement = e.idEmplacement
-                       and p.rack_idRack = r.idRack
-                       and p.emplacementusine_idEmplacementUsine = eu.idEmplacementUsine
-                       and c.fk_placement = p.idPlacement
-                       and c.type_idType = t.idType
-                       and t.sousTypeChute_idSousTypeChute = stc.idSousTypeChute
-                       and t.typeChute_idTypeChute = tc.idTypeChute
-                       and ((numRack = '".$rack."') or (hauteur = '".$hauteur."') or (largeur='".$largeur."') or (idSousTypeChute='".$typechute."'))
-                    ORDER BY dateChute";
-
-        $stmt=$db->prepare($sql);
-        $stmt->execute();
-        $listChute=$stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $listChute=$stmt->fetchAll();
-        //var_dump($listChute);
-
-        //print_r($listChute);
-
-       //$count = $listChute->rowCount();
-
-        $rackSql="SELECT idRack,numRack FROM mydb.rack";
-        //$listRack=$db->query($rackSql);
-
-        $test=$db->prepare($rackSql);
-        $test->execute();
-        $listRack=$test->setFetchMode(PDO::FETCH_ASSOC);
-        $listRack=$test->fetchAll();
+$listChute = $db->query($sql);
 
         //print_r($listRack);
 
         foreach ($listChute as $row) {
-            if ($_GET['hauteur'] == $row['hauteur'] || $_GET['largeur'] == $row['largeur'] || $_GET['rack'] == $row['numRack'] || $_GET['stype'] == $row['idSousTypeChute'] ){
-                echo "<tr class='lignetab'>
-                                    <td scope=\"row\">" . $row['nomChute'] . "</td>
-                                    <td>" . $row['hauteur'] . "</td>
-                                    <td>" . $row['largeur'] . "</td>
-                                    <td>" . $row['numLot'] . "</td>
-                                    <td>" . $row['dateChute'] . "</td>
-                                    <td>" . $row['positionEmplacement'] . "</td>
-                                    <td>" . $row['nomEmplacement'] . "</td>
-                                    <td>" . $row['nomTypeChute'] . "</td>
-                                    <td>" . $row['nomSousTypeChute'] . "</td>
-                                    <td>" . $row['numRack'] . "</td>";
-                $_SESSION['rack']=$row['numRack'];
-            }else {
-                echo "<p style='color:red'>error</p>";
-            }
+          echo "<tr id=".$row['idChutte'].">
+                  <td>" . $row['ht'] . "</td>
+                  <td>" . $row['lg'] . "</td>
+                  <td>" . $row['dateMiseStock'] . "</td>
+                  <td>" . $row['cmt'] . "</td>
+                  <td>" . $row['positionEmp'] . "</td>
+                  <td>" . $row['numPlateau'] . "</td>
+                  <td>" . $row['rack'] . "</td>";
+          $_SESSION['rack']=$row['rack'];
+
             ?>
-            <form action='edit.inc.php' method='post'>
             <?php
-            echo "<td id='modifrack'><select class=\"form-control \" name='nomRack'>";
-            foreach ($listRack as $rack){ echo "<option name='".$rack['numRack']."' value='" .$rack['idRack']. "' id='" .$rack['idRack']. "'>". $rack['numRack'] ."</option>"; }
-            echo "</select><input class=\"btn btn-outline-success\" type='submit' value='Modifier'></td></tr>";
+            $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation, ', Zone : ', nomZone) as nomRack
+                   FROM safetyglass_db.rack as r, safetyglass_db.zone as z
+                   WHERE r.zone_idZone = z.idZone";
+                   $rackSql = $db->query($rack);
+                   $modifrack='';
+            echo "<td id='modifrack'>";
+            echo "<select class=\"custom-select\" id='rack' name='listerack' size='1'>
+                    <option name='rack' value='' disabled selected hidden> Sélectionnez un rack... </option>";
+            foreach ($rackSql as $key) {
+              $modifrack=$row['idRack'];
+                echo "<option name='rack' value=".$key['idRack'].">".$key['nomRack']."</option>";
+            }
+            echo "</select><a href='edit.inc.php'>
+                            <i class='far fa-edit'></i>
+                           </a></td>";
             ?>
-            </form>
+
 
         <?php
         }
-    }
+
 
 ?>
     </tbody>
+    <tfoot>
+      <tr>
+          <th>Hauteur</th>
+          <th>Largeur</th>
+          <th>Date</th>
+          <th>Commentaire</th>
+          <th>Position</th>
+          <th>Plateau</th>
+          <th>Emplacement</th>
+      </tr>
+    </tfoot>
 </table>
 
 <footer>
