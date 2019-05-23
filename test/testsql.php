@@ -1,7 +1,13 @@
 <?php
-echo "new page";
- ?>
+echo "New Page<br />";
 
- <p>
-   lorem ipsum
- </p>
+$abreviation = $_POST['abre'];
+$description = $_POST['desc'];
+$largeur = $_POST['larg'];
+$longueur = $_POST['long'];
+
+echo $abreviation;
+
+
+//header('Location: http://localhost/SafetyGlassProject/test/testform.php');
+ ?>

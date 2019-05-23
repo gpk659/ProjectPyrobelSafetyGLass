@@ -3,11 +3,14 @@
  */
 
 $(document).ready(function(){
-
-  // Setup - add a text input to each footer cell
+/*=============================================================== */
+  // Plugin jquery DataTable sur le tableau des volumes à produire.
+  // Ajout d'un champ pour filtrer le type de verre.
+/*=============================================================== */
+  // Setup - add a text input to each footer cell.
   $('#office').each(function () {
     var title = $(this).text();
-    $(this).html('<input type="text" placeholder="Filtrer ' + title + '" />');
+    $(this).html('<input type="text" class="form-control" placeholder="' + title + '" />');
   });
 
   var tableVol = $('#tableVolToDo').DataTable({
@@ -28,36 +31,22 @@ $(document).ready(function(){
           });
       });
 
-/*------------------------------------------------------ */
 
-    $('#listRack').DataTable( {
+/*=============================================================== */
+/*
+* Tableau des chutes.
+*/
+/*=============================================================== */
+
+    $('#findTable, #modiftable, #listOkVol, #tableModifRack, #tableModifChute, #tableModifPlateau').DataTable( {
             "language": {
-                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                "url": "../JS/French.json"
             },
-            "lengthMenu": [ 50,100,200 ]
+            "lengthMenu": [ 10,50,100 ]
         } );
 
-// Table liste des chutes
-    // Setup - add a text input to each footer cell
 
 
-// Table modifrack
-/*------------------------------------------------------------*/
-
-    // DataTable
-    var table = $('#modiftable').DataTable({
-            "language": {
-                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-            }
-        } );
-// Table modifrack
-/*---------------------------------------------------------------*/
-    // DataTable
-    var tablemodif = $('#usevoltable').DataTable({
-            "language": {
-                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-            }
-        } );
 
 // Bouton de retour sur la page UseVol
 $('#backUseVol').click(function(){

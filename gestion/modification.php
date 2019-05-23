@@ -34,10 +34,11 @@ include_once "menu.php";
 
 
 <div id="listRack" class="tabcontent">
-  <table id="tablaModifRack" class="hover" style="width:100%">
+  <table id="tableModifRack" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
         <th>Abréviation</th>
+        <th>Nom Rack</th>
         <th>Description</th>
         <th>Largeur</th>
         <th>Longueur</th>
@@ -70,16 +71,15 @@ include_once "menu.php";
 </div>
 
 <div id="listTypeChute" class="tabcontent">
-  <table id="tableModifChute" class="hover" style="width:100%">
+  <table id="tableModifChute" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
         <th>Num Cadre</th>
         <th>Num Plateau</th>
         <th>Largeur</th>
-        <th>Hauteur</th>
         <th>Commentaire</th>
         <th>Date</th>
-        <th></th>
+        <th>Nom Fournisseur</th>
         <th></th>
       </tr>
     </thead>
@@ -110,15 +110,14 @@ include_once "menu.php";
 </div>
 
 <div id="listPlateau" class="tabcontent">
-  <table id="tableModifPlateau" class="hover" style="width:100%">
+  <table id="tableModifPlateau" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
         <th>epType</th>
         <th>masseType</th>
         <th>codeAGCType</th>
-        <th>Longueur</th>
         <th>Description Courte</th>
-        <th></th>
+        <th>Description Complete</th>
         <th></th>
       </tr>
     </thead>
@@ -126,10 +125,9 @@ include_once "menu.php";
       <?php
       $sqlchute="SELECT idType, epType, masseType, codeAGCType, descriptionCourte, descriptionComplete FROM safetyglass_db.type";
 
-          $listchute = $db->query($sqlchute);
+      $listchute = $db->query($sqlchute);
 
               foreach ($listchute as $row) {
-
 
                       echo "<tr class='lignetab'>
                               <td>" . $row['epType'] . "</td>
@@ -140,14 +138,10 @@ include_once "menu.php";
                               <td><a href='#'>Modifier</a></td>
                               </tr>";
                   }
-
-
       ?>
     </tbody>
   </table>
 </div>
-
-
 
 <footer>
     <span class="credit">v. 0.1 - © P. G.</span>

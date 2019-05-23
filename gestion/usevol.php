@@ -42,7 +42,7 @@ foreach ($listUseVol as $row) {
   $idVol=$row['idListeVolume'];
   $hauteur=$row['hauteur'];
   $largeur=$row['largeur'];
-  echo "<button type='button' id='backUseVol'> < Retour</button>
+  echo "<button type='button' id='backUseVol'> < Retour </button>
   <div class='useVolContainer'>
           <div class='useVolinfo'>
           <h5>Détails Volume :</h5>
@@ -55,12 +55,14 @@ foreach ($listUseVol as $row) {
           <li><span>Façonnage :</span> ".$row['faconnage']."</li>
           <li><span>Commentaire :</span> ".$row['commentaire']
           ."</li></div>";
-}?>
+}
+?>
           <div class="useVolchutes">
-            <h5>Liste des chutes :</h5>
+            <h5>Chutes à utiliser :</h5>
             <table id="usevoltable" class="display" style="width:100%">
                 <thead>
                     <tr>
+                        <th>Id Chute</th>
                         <th>Hauteur</th>
                         <th>Largeur</th>
                         <th>Date Mise en Stock</th>
@@ -92,6 +94,7 @@ foreach ($listUseVol as $row) {
                             $cmt='fait';
                             $datefab=date('Y-m-d');
                                   echo "<tr id=".$row['idChutte'].">
+                                          <td>".$row['idChutte']."</td>
                                           <td>" . $row['ht'] . "</td>
                                           <td>" . $row['lg'] . "</td>
                                           <td>" . $row['dateMiseStock'] . "</td>
@@ -107,17 +110,6 @@ foreach ($listUseVol as $row) {
                               }
                   ?>
                 </tbody>
-                <tfoot>
-                  <tr>
-                      <th>Hauteur</th>
-                      <th>Largeur</th>
-                      <th>Date</th>
-                      <th>Commentaire</th>
-                      <th>Position</th>
-                      <th>Plateau</th>
-                      <th>Emplacement</th>
-                  </tr>
-                </tfoot>
             </table>
           </div>
         </div>

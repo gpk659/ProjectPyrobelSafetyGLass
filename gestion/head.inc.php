@@ -11,15 +11,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../CSS/jquery.dataTables.min.css" media="screen">
     <!--===============================================================================================-->
@@ -32,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/menu.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/jquery.dataTables.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../CSS/dataTables.bootstrap4.min.css" media="screen">
 
     <!-- CSS Impression -->
     <link rel="stylesheet" type="text/css" href="../CSS/print.css" media="print">
@@ -39,6 +32,7 @@
     <script type="text/javascript" src="../JS/jquery-3.3.1.js"></script>
 
     <script type="text/javascript" src="../JS/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../JS/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="../JS/myscript.js"></script>
     <script type="text/javascript" src="../JS/volscript.js"></script>
     <!--===============================================================================================-->

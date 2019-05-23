@@ -22,6 +22,7 @@
  });
  */
 
+echo 76 <=> '76 trombones';
 $urgent="";
 $jPlusUn="";
 $jPlusDeux="";

@@ -65,11 +65,33 @@ include_once "menu.php";
 
   <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'addVol')"> Ajouter un volume </button>
-    <button class="tablinks" onclick="openCity(event, 'listVol')"> Liste volume </button>
+    <button class="tablinks" onclick="openCity(event, 'listVol')"> Liste volumes </button>
     <button class="tablinks" onclick="openCity(event, 'listVolBon')"> Liste volumes faits </button>
+
+    <div class="statusvol">
+      <table class="statustable">
+        <tbody>
+          <tr>
+            <td></td>
+            <td class="stylestatus danger">Urgent</td>
+            <td class="stylestatus">J+1</td>
+            <td class="stylestatus">J+2</td>
+            <td class="stylestatus">J+3</td>
+            <td class="stylestatus">J>3</td>
+          </tr><tr>
+            <td>Nb volume(s) </td>
+            <td class="stylestatus danger"><?php echo $urgent; ?></td>
+            <td class="stylestatus"><?php echo $jPlusUn; ?></td>
+            <td class="stylestatus"><?php echo $jPlusDeux; ?></td>
+            <td class="stylestatus"><?php echo $jPlusTrois; ?></td>
+            <td class="stylestatus"><?php echo $jPlusPlus; ?></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-
+<hr />
 <div id="addVol" class="tabcontent"> <!-- Formulaire ajouter un volume -->
   <form action="index.html" method="post">
     <fieldset class="form_add">
@@ -127,29 +149,11 @@ include_once "menu.php";
 </div>
 
 <div id="listVol" class="tabcontent"> <!-- Tableau des volumes à faire -->
-  <div class="statusvol">
-    <table class="statustable">
-      <tbody>
-        <tr>
-          <td></td>
-          <td class="stylestatus">Urgent</td>
-          <td class="stylestatus">J+1</td>
-          <td class="stylestatus">J+2</td>
-          <td class="stylestatus">J+3</td>
-          <td class="stylestatus">J>3</td>
-        </tr><tr>
-          <td>Nb volume(s) </td>
-          <td class="stylestatus danger"><?php echo $urgent; ?></td>
-          <td class="stylestatus"><?php echo $jPlusUn; ?></td>
-          <td class="stylestatus"><?php echo $jPlusDeux; ?></td>
-          <td class="stylestatus"><?php echo $jPlusTrois; ?></td>
-          <td class="stylestatus"><?php echo $jPlusPlus; ?></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <h4 id="titrevol" class="listchuttex">Liste volumes à couper</h4>
-  <table id="tableVolToDo" class="display" style="width:100%">
+  <header id="headerlistVol">
+<!-- tab info -->
+    <h4 id="titrevol" class="listchuttex">Liste volumes à couper</h4>
+  </header>
+  <table id="tableVolToDo" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
         <th>Num Commande</th>
@@ -204,7 +208,7 @@ include_once "menu.php";
 </div>
 <div id="listVolBon" class="tabcontent"> <!-- Tableau des volumes faits -->
   <h4 class="listchuttex">Liste volumes faits</h4>
-  <table class="table table-striped">
+  <table id="listOkVol" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
         <th scope="col">Num Commande</th>
