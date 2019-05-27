@@ -1,18 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Grégory
- * Date: 04-09-18
- * Time: 14:58
- */
-session_start();
-include 'secure.php';
-require "../dbConnect.php";
-include_once 'newRequests.php';
+  /**
+   * Created by PhpStorm.
+   * User: Grégory
+   * Date: 04-09-18
+   * Time: 14:58
+   */
+  session_start();
+  include 'secure.php';
+  require "../dbConnect.php";
+  include_once 'newRequests.php';
 
-$sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM safetyglass_db.plateau";
-
-
+  $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM safetyglass_db.plateau";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -21,7 +19,7 @@ $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentai
 
 <body>
 <?php /* print_r($_SESSION); */
-include_once "menu.php";
+  include_once "menu.php";
 ?>
 <header id="currentUser">Utilisateur en cours : <?php echo $_SESSION['pseudo'];?></header>
 <hr />
@@ -53,18 +51,15 @@ include_once "menu.php";
 
               foreach ($listrack as $row) {
 
-
                       echo "<tr class='lignetab'>
                               <td>" . $row['abreviation'] . "</td>
                               <td>" . $row['nomRack'] . "</td>
                               <td>" . $row['description'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['longueur'] . "</td>
-                              <td><a href='#'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=rack&abv=" . $row['abreviation'] . "&nomRack=" . $row['nomRack'] . "&des=" . $row['description'] . "&lg=" . $row['largeur'] . "&lgr=" . $row['longueur'] . "'>Modifier</a></td>
                               </tr>";
                   }
-
-
       ?>
     </tbody>
   </table>
@@ -91,7 +86,6 @@ include_once "menu.php";
 
               foreach ($listplat as $row) {
 
-
                       echo "<tr class='lignetab'>
                               <td>" . $row['numCadre'] . "</td>
                               <td>" . $row['numPlateau'] . "</td>
@@ -99,11 +93,9 @@ include_once "menu.php";
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['date'] . "</td>
                               <td>" . $row['nomFournisseur'] . "</td>
-                              <td><a href='#'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=plateau&numCadre=" . $row['numCadre'] . "&numPlateau=" . $row['numPlateau'] . "&largeur=" . $row['largeur'] . "&comment=" . $row['commentaire'] . "&date=" . $row['date'] . "&nomF=" . $row['nomFournisseur'] . "'>Modifier</a></td>
                               </tr>";
                   }
-
-
       ?>
     </tbody>
   </table>
@@ -135,7 +127,7 @@ include_once "menu.php";
                               <td>" . $row['codeAGCType'] . "</td>
                               <td>" . $row['descriptionCourte'] . "</td>
                               <td>" . $row['descriptionComplete'] . "</td>
-                              <td><a href='#'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=chute&eptype=" . $row['epType'] . "&masstype=" . $row['masseType'] . "&codeAGCType=" . $row['codeAGCType'] . "&descourte=" . $row['descriptionCourte'] . "&descomp=" . $row['descriptionComplete']. "'>Modifier</a></td>
                               </tr>";
                   }
       ?>

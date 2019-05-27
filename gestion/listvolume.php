@@ -226,7 +226,6 @@ include_once "menu.php";
           $listVolbon = $db->query($sqllistvolbon);
 
               foreach ($listVolbon as $row) {
-
                       echo "<tr class='lignetab'>
                               <td scope=\"row\">" . $row['numCom'] . "</td>
                               <td>" . $row['lettre'] . "</td>
