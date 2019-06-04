@@ -42,7 +42,7 @@ foreach ($listUseVol as $row) {
   $idVol=$row['idListeVolume'];
   $hauteur=$row['hauteur'];
   $largeur=$row['largeur'];
-  echo "<button type='button' id='backUseVol'> < Retour </button>
+  echo "<button type='button' class='backUseVol'> < Retour </button>
   <div class='useVolContainer'>
           <div class='useVolinfo'>
           <h5>Détails Volume :</h5>
@@ -76,7 +76,7 @@ foreach ($listUseVol as $row) {
                 <tbody>
                   <?php
                       $sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
-                                      positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
+                                     positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
                               FROM safetyglass_db.listechutte as listchutte,
                                    safetyglass_db.emplacement as emp,
                                    safetyglass_db.rack, safetyglass_db.plateau

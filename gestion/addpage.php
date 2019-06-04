@@ -28,7 +28,7 @@
         <button class="tablinks" onclick="openCity(event, 'addRack')"> Ajout Rack </button>
         <button class="tablinks" onclick="openCity(event, 'addEmp')"> Ajout Emplacement </button>
     </div>
-
+<hr />
     <div id="addUser" class="tabcontent">
         <form action="add/addUser.php" method="post">
             <fieldset class="form_add">

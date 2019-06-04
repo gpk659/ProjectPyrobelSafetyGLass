@@ -49,7 +49,7 @@ $(document).ready(function(){
 
 
 // Bouton de retour sur la page UseVol
-$('#backUseVol').click(function(){
+$('.backUseVol').click(function(){
 		history.back();
 	});
 

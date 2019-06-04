@@ -30,11 +30,13 @@
   <button class="tablinks" onclick="openCity(event, 'listTypeChute')"> Liste Plateau </button>
 </div>
 
+<hr />
 
 <div id="listRack" class="tabcontent">
   <table id="tableModifRack" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
+        <th>idRack</th>
         <th>Abréviation</th>
         <th>Nom Rack</th>
         <th>Description</th>
@@ -52,23 +54,30 @@
               foreach ($listrack as $row) {
 
                       echo "<tr class='lignetab'>
+                              <td>" . $row['idRack'] . "</td>
                               <td>" . $row['abreviation'] . "</td>
                               <td>" . $row['nomRack'] . "</td>
                               <td>" . $row['description'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['longueur'] . "</td>
-                              <td><a href='editlist.php?typem=rack&abv=" . $row['abreviation'] . "&nomRack=" . $row['nomRack'] . "&des=" . $row['description'] . "&lg=" . $row['largeur'] . "&lgr=" . $row['longueur'] . "'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=rack
+                                                        &idr=" . $row['idRack'] . "
+                                                        &abv=" . $row['abreviation'] . "
+                                                        &nomRack=" . $row['nomRack'] . "
+                                                        &des=" . $row['description'] . "
+                                                        &lg=" . $row['largeur'] . "
+                                                        &lgr=" . $row['longueur'] . "'>Modifier</a></td>
                               </tr>";
                   }
       ?>
     </tbody>
   </table>
 </div>
-
 <div id="listTypeChute" class="tabcontent">
   <table id="tableModifChute" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
+        <th>idPlateau</th>
         <th>Num Cadre</th>
         <th>Num Plateau</th>
         <th>Largeur</th>
@@ -87,13 +96,21 @@
               foreach ($listplat as $row) {
 
                       echo "<tr class='lignetab'>
+                              <td>" . $row['idPlateau'] . "</td>
                               <td>" . $row['numCadre'] . "</td>
                               <td>" . $row['numPlateau'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['date'] . "</td>
                               <td>" . $row['nomFournisseur'] . "</td>
-                              <td><a href='editlist.php?typem=plateau&numCadre=" . $row['numCadre'] . "&numPlateau=" . $row['numPlateau'] . "&largeur=" . $row['largeur'] . "&comment=" . $row['commentaire'] . "&date=" . $row['date'] . "&nomF=" . $row['nomFournisseur'] . "'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=plateau
+                                                        &numCadre=" . $row['numCadre'] . "
+                                                        &numPlateau=" . $row['numPlateau'] . "
+                                                        &largeur=" . $row['largeur'] . "
+                                                        &comment=" . $row['commentaire'] . "
+                                                        &date=" . $row['date'] . "
+                                                        &nomF=" . $row['nomFournisseur'] . "
+                                                        &idp=".$row['idPlateau']."'>Modifier</a></td>
                               </tr>";
                   }
       ?>
@@ -105,6 +122,7 @@
   <table id="tableModifPlateau" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
+        <th>idType</th>
         <th>epType</th>
         <th>masseType</th>
         <th>codeAGCType</th>
@@ -122,12 +140,19 @@
               foreach ($listchute as $row) {
 
                       echo "<tr class='lignetab'>
+                              <td>" . $row['idType'] . "</td>
                               <td>" . $row['epType'] . "</td>
                               <td>" . $row['masseType'] . "</td>
                               <td>" . $row['codeAGCType'] . "</td>
                               <td>" . $row['descriptionCourte'] . "</td>
                               <td>" . $row['descriptionComplete'] . "</td>
-                              <td><a href='editlist.php?typem=chute&eptype=" . $row['epType'] . "&masstype=" . $row['masseType'] . "&codeAGCType=" . $row['codeAGCType'] . "&descourte=" . $row['descriptionCourte'] . "&descomp=" . $row['descriptionComplete']. "'>Modifier</a></td>
+                              <td><a href='editlist.php?typem=chute
+                                                        &idc=" . $row['idType'] . "
+                                                        &eptype=" . $row['epType'] . "
+                                                        &masstype=" . $row['masseType'] . "
+                                                        &codeAGCType=" . $row['codeAGCType'] . "
+                                                        &descourte=" . $row['descriptionCourte'] . "
+                                                        &descomp=" . $row['descriptionComplete']. "'>Modifier</a></td>
                               </tr>";
                   }
       ?>

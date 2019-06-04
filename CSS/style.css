@@ -312,7 +312,7 @@ fieldset legend {
     .danger {color: red; font-weight: bold;}
 
 
-#backUseVol {
+.backUseVol {
   border: 1px solid black;
   border-radius: 3px;
   margin: 5px;
