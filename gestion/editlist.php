@@ -53,13 +53,13 @@ if($_GET['typem'] == "rack"){
       <div class="form-group row">
         <label class="col-sm-2 col-form-label control-label">Largeur :</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" name="largeur" value="<?php echo $_GET['lg']; ?>">
+          <input class="form-control" type="number" name="largeur" value="<?php echo $_GET['lg']; ?>">
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label control-label">Longueur :</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" name="longueur" value="<?php echo $_GET['lgr']; ?>">
+          <input class="form-control" type="number" name="longueur" value="<?php echo $_GET['lgr']; ?>">
         </div>
       </div>
       <div>
@@ -81,37 +81,37 @@ if($_GET['typem'] == "rack"){
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Num Cadre :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="firstname" value="<?php echo $_GET['numCadre']; ?>">
+        <input class="form-control" type="text" name="numCadre" value="<?php echo $_GET['numCadre']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Num Plateau :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['numPlateau']; ?>">
+        <input class="form-control" type="text" name="numPlateau" value="<?php echo $_GET['numPlateau']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Largeur :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['largeur']; ?>">
+        <input class="form-control" type="number" name="largeur" value="<?php echo $_GET['largeur']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Commentaire :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['comment']; ?>">
+        <input class="form-control" type="text" name="cmt" value="<?php echo $_GET['comment']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Date :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['date']; ?>">
+        <input class="form-control" type="date" name="date" value="<?php echo $_GET['date']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Nom F :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['nomF']; ?>">
+        <input class="form-control" type="text" name="nomF" value="<?php echo $_GET['nomF']; ?>">
       </div>
     </div>
     <div>
@@ -135,31 +135,31 @@ if($_GET['typem'] == "rack"){
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">ep Type :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="firstname" value="<?php echo $_GET['eptype']; ?>">
+        <input class="form-control" type="number" name="epType" value="<?php echo $_GET['eptype']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Masse Type :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['masstype']; ?>">
+        <input class="form-control" type="number" name="masseType" value="<?php echo $_GET['masstype']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Code AGC Type :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['codeAGCType']; ?>">
+        <input class="form-control" type="text" name="codeAGC" value="<?php echo $_GET['codeAGCType']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Description Courte :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['descourte']; ?>">
+        <input class="form-control" type="text" name="desCourte" value="<?php echo $_GET['descourte']; ?>">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Description Complete :</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" name="lastname" value="<?php echo $_GET['descomp']; ?>">
+        <input class="form-control" type="text" name="desComplete" value="<?php echo $_GET['descomp']; ?>">
       </div>
     </div>
 
