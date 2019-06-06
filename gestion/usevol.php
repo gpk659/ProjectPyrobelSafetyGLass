@@ -58,14 +58,25 @@ foreach ($listUseVol as $row) {
 }
 ?>
           <div class="useVolchutes">
+            <div class="tab">
+              <hr>
+              <button class="tablinks" onclick="openCity(event, 'usechute')"> Chutes à utiliser </button>
+              <button class="tablinks" onclick="openCity(event, 'newplat')"> Nouveau Plateau </button>
+              <button class="tablinks" onclick="openCity(event, 'newchute')"> Nouvelle chute </button>
+              <button class="tablinks" onclick="openCity(event, 'fin')"> Fin </button>
+              <hr>
+            </div>
+
+
+            <div id="usechute" class="tabcontent">
             <h5>Chutes à utiliser :</h5>
-            <table id="usevoltable" class="display" style="width:100%">
+            <table id="usechutetable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id Chute</th>
                         <th>Hauteur</th>
                         <th>Largeur</th>
-                        <th>Date Mise en Stock</th>
+                        <th>Date</th>
                         <th>Commentaire</th>
                         <th>Rendement</th>
                         <th>Emplacement</th>
@@ -93,7 +104,7 @@ foreach ($listUseVol as $row) {
                             $lg=$row['lg'];
                             $cmt='fait';
                             $datefab=date('Y-m-d');
-                                  echo "<tr id=".$row['idChutte'].">
+                                  echo "<tr class='lignetab'>
                                           <td>".$row['idChutte']."</td>
                                           <td>" . $row['ht'] . "</td>
                                           <td>" . $row['lg'] . "</td>
@@ -104,12 +115,105 @@ foreach ($listUseVol as $row) {
 
                                           echo " %</td>
                                           <td>".$row['rack']."</td>
-                                          <td>" . $row['positionEmp'] . "</td>
-                                          <td>
+                                          <td>" . $row['positionEmp'] . "/4</td>
                                           <td> <a href='usevolchute.php?idChutte=$idchute&idVol=$idVol&ht=$ht&lg=$lg&date=$datefab&cmt=$cmt&numcom=$numerocom&lettre=$numlettre'>Utiliser</a> </td>";
                               }
                   ?>
                 </tbody>
             </table>
           </div>
+          <div id="newplat" class="tabcontent">
+                <form name='plateau' method="get" action="#">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Num Cadre :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="text" name="numCadre" value="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Num Plateau :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="text" name="numPlateau" value="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Largeur :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="number" name="largeur" value="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Commentaire :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="text" name="cmt" value="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Date :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="date" name="date" value="">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label control-label">Nom F :</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="text" name="nomF" value="">
+                  </div>
+                </div>
+                <div>
+                  <input type="hidden" name="plateau" value="plateau">
+                  <input type="hidden" name="idp" value="">
+                </div>
+                <div class="boutonsubmit">
+                  <input type="submit" name='plateau' class="btn btn-primary" value="Ajouter">
+                </div>
+              </form>
+          </div>
+          <div id="newchute" class="tabcontent">
+            <form id="formnewloss" action="sql_add.php" method="get">
+                <fieldset>
+                    <legend>Ajouter une nouvelle chute</legend>
+                    <div class="form-group">
+                        <label for="hauteurcChute">Hauteur :</label>
+                        <input class="form-control" id="hauteurchute" type="number" name="hauteurChute" min="1" max="3210" step="1" placeholder="Valeur en mm" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="largeurChute">Largeur :</label><input class="form-control" id="largeurchute" type="number" name="largeurChute" min="1" max="2250" step="1" placeholder="Valeur en mm" required>
+                    </div>
+                    <div class="form-group">
+                       <?php elementNewLoss('SoustypeChute'); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php elementNewLoss('rack');  ?>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label>Commentaire :</label>
+                        <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..." required></textarea>
+                    </div>
+                    <!-- dois se faire automatiquement -->
+                    <!--<div>
+                        <label>Emplacement dans le rack : </label>
+                        <input type="number" id="position" name="positionRack" required min="1">
+                    </div>-->
+                    <div>
+                      <label>Chute provisoire ?</p>
+                      <div>
+                        <input type="radio" id="yes" name="provisoire" value="Oui"
+                               checked>
+                        <label for="huey">Oui</label>
+                      </div>
+
+                      <div>
+                        <input type="radio" id="no" name="provisoire" value="non">
+                        <label for="dewey">Non</label>
+                      </div>
+                    </div>
+                    <div class="boutonsubmit">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </fieldset>
+            </form>
+          </div>
         </div>
+      </div>

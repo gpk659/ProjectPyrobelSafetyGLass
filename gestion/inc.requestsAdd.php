@@ -58,5 +58,5 @@ function addItem($addWord){
         break;
     default:
         echo "default value, doesn't work!";
-}
+      }
 }

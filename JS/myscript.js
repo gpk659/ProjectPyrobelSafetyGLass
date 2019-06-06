@@ -38,7 +38,7 @@ $(document).ready(function(){
 */
 /*=============================================================== */
 
-    $('#findTable, #modiftable, #listOkVol, #tableModifRack, #tableModifChute, #tableModifPlateau').DataTable( {
+    $('#findTable, #modiftable, #listOkVol, #tableModifRack, #tableModifChute, #tableModifPlateau, #usechutetable').DataTable( {
             "language": {
                 "url": "../JS/French.json"
             },

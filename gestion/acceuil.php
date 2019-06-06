@@ -22,8 +22,6 @@ include_once "menu.php";
 
 
 
-<footer>
-    <span class="credit">v. 0.1 - © P. G.</span>
-</footer>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
