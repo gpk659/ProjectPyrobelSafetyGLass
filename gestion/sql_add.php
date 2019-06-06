@@ -30,7 +30,7 @@ $insertloss="INSERT INTO `safetyglass_db`.`listechutte` (`largeur`, `hauteur`, `
 VALUES ('".$largeur."','".$hauteur."','".$type."','".$day."','".$time."','".$comment."','".$plateau."','1')";
 
 
-$addloss=$db->query($insertloss);
+//$addloss=$db->query($insertloss);
 
 header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
 exit();
