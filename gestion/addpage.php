@@ -30,7 +30,7 @@
     </div>
 <hr />
     <div id="addUser" class="tabcontent">
-        <form action="add/addUser.php" method="post">
+        <form id="newOp" action="add/addUser.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout user -->
                 <legend>Ajouter Un Opérateur</legend>
@@ -59,7 +59,7 @@
         </form>
     </div>
     <div id="addType" class="tabcontent">
-        <form action="add/addType.php" method="post">
+        <form id="newType" action="add/addType.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout type -->
                 <legend>Ajouter Un Type</legend>
@@ -100,7 +100,7 @@
         </form>
     </div>
     <div id="addRack" class="tabcontent">
-        <form action="add/addRack.php" method="post">
+        <form id="newRack" action="add/addRack.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout rack -->
                 <legend>Ajouter Un Rack</legend>
@@ -160,7 +160,7 @@
         </form>
     </div>
     <div id="addEmp" class="tabcontent">
-        <form action="add/addEmp.php" method="post">
+        <form id="newEmp" action="add/addEmp.php" method="post">
             <fieldset class="form_add">
                 <!-- Menu ajout emplacement usine -->
                 <legend>Ajouter Emplacement Usine</legend>

@@ -31,7 +31,7 @@ if($_GET['typem'] == "rack"){
         Modification Rack : <br />";
   ?>
   <div>
-    <form name='rack' method="get" action="editlist_sql.php">
+    <form id="editRack" name='rack' method="get" action="editlist_sql.php">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label control-label">Abreviation :</label>
         <div class="col-sm-10">
@@ -77,7 +77,7 @@ if($_GET['typem'] == "rack"){
     echo "<button type='button' class='backUseVol'> < Retour </button>
           Modification Plateau<br />"; ?>
   <div>
-    <form name='plateau' method="get" action="editlist_sql.php">
+    <form id="editPlat" name='plateau' method="get" action="editlist_sql.php">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">Num Cadre :</label>
       <div class="col-sm-10">
@@ -131,7 +131,7 @@ if($_GET['typem'] == "rack"){
         Modification Chute<br />";
   ?>
   <div>
-    <form name='chute' method="get" action="editlist_sql.php">
+    <form id="editChute" name='chute' method="get" action="editlist_sql.php">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label control-label">ep Type :</label>
       <div class="col-sm-10">

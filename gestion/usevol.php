@@ -62,14 +62,12 @@ foreach ($listUseVol as $row) {
               <hr>
               <button class="tablinks" onclick="openCity(event, 'usechute')"> Chutes à utiliser </button>
               <button class="tablinks" onclick="openCity(event, 'newplat')"> Nouveau Plateau </button>
-              <button class="tablinks" onclick="openCity(event, 'newchute')"> Nouvelle chute </button>
-              <button class="tablinks" onclick="openCity(event, 'fin')"> Fin </button>
+              <!--<button class="tablinks" onclick="openCity(event, 'newchute')"> Nouvelle chute </button>-->
+              <a class="tablinks" href="../gestion/listvolume.php" > Fin </a>
               <hr>
             </div>
 
-
             <div id="usechute" class="tabcontent">
-            <h5>Chutes à utiliser :</h5>
             <table id="usechutetable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -123,7 +121,13 @@ foreach ($listUseVol as $row) {
             </table>
           </div>
           <div id="newplat" class="tabcontent">
-                <form name='plateau' method="get" action="#">
+                <form id="newplatUseVol" name='plateau' method="get" action="#">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label plateau">Num Plateau :</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" name="numPlateau" value="" required>
+                    </div>
+                  </div>
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label control-label">Num Cadre :</label>
                   <div class="col-sm-10">
@@ -131,15 +135,15 @@ foreach ($listUseVol as $row) {
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label control-label">Num Plateau :</label>
+                  <label class="col-sm-2 col-form-label control-label">Largeur :</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="text" name="numPlateau" value="">
+                    <input class="form-control" type="number" name="largeur" value="" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label control-label">Largeur :</label>
+                  <label class="col-sm-2 col-form-label control-label">Hauteur :</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="number" name="largeur" value="">
+                    <input class="form-control" type="number" name="hauteur" value="" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -148,21 +152,10 @@ foreach ($listUseVol as $row) {
                     <input class="form-control" type="text" name="cmt" value="">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label control-label">Date :</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="date" name="date" value="">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label control-label">Nom F :</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="text" name="nomF" value="">
-                  </div>
-                </div>
                 <div>
                   <input type="hidden" name="plateau" value="plateau">
                   <input type="hidden" name="idp" value="">
+                  <!-- Ajout de la date automatiquement , aussi specifier dans quel rack on range la nouvelle chute -->
                 </div>
                 <div class="boutonsubmit">
                   <input type="submit" name='plateau' class="btn btn-primary" value="Ajouter">
@@ -195,6 +188,7 @@ foreach ($listUseVol as $row) {
                     <!--<div>
                         <label>Emplacement dans le rack : </label>
                         <input type="number" id="position" name="positionRack" required min="1">
+                        aussi specifier dans quel rack on range la nouvelle chute
                     </div>-->
                     <div>
                       <label>Chute provisoire ?</p>
@@ -203,7 +197,6 @@ foreach ($listUseVol as $row) {
                                checked>
                         <label for="huey">Oui</label>
                       </div>
-
                       <div>
                         <input type="radio" id="no" name="provisoire" value="non">
                         <label for="dewey">Non</label>

@@ -1,5 +1,5 @@
 /*
-* Fichier avec le script de la page "Volumes à couper"
+* script de la page "Volumes à couper = Suppression"
 *
  */
 
@@ -15,3 +15,13 @@
                   return false;
                }
             }
+
+
+/*
+* script ajout d'une chute après avoir choisi un volume
+*
+*/
+
+function addChute(idChutte,idVolume){
+
+}

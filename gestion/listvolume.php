@@ -93,7 +93,7 @@ include_once "menu.php";
 
 <hr />
 <div id="addVol" class="tabcontent"> <!-- Formulaire ajouter un volume -->
-  <form action="index.html" method="post">
+  <form id="newVolume" action="index.html" method="post">
     <fieldset class="form_add">
       <legend> Ajout Volume </legend>
       <div class="form-group row">
@@ -151,7 +151,6 @@ include_once "menu.php";
 <div id="listVol" class="tabcontent"> <!-- Tableau des volumes à faire -->
   <header id="headerlistVol">
 <!-- tab info -->
-    <h4 id="titrevol" class="listchuttex">Liste volumes à couper</h4>
   </header>
   <table id="tableVolToDo" class="table table-striped table-bordered" style="width:100%">
     <thead>
@@ -200,14 +199,12 @@ include_once "menu.php";
                   }
                   /* Utiliser : call a php sql script to use it */
                   /* Supprimer : call a php function with confirmation to delete */
-
       ?>
     </tbody>
 
   </table>
 </div>
 <div id="listVolBon" class="tabcontent"> <!-- Tableau des volumes faits -->
-  <h4 class="listchuttex">Liste volumes faits</h4>
   <table id="listOkVol" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
