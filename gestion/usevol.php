@@ -11,6 +11,38 @@
     $rendement=(($lgVol+$htVol)*2)/(($lgChute+$htChute)*2)*100;
     echo round($rendement);
   }
+
+  /*
+  * - SQL NEW Plateau -
+  * INSERT INTO `safetyglass_db`.`plateau` (`numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`, `commentaire`, `date`, `nomFournisseur`)
+  * VALUES ('44444', '0', 'CM1234', '1234', '1234', 'test', '2019-01-01', 'AGC');
+  */
+  if($_POST){
+    $query="";
+
+    $numPlateau=$_POST['numPlateau'];
+    $numCadre=$_POST['numCadre'];
+    $largeur=$_POST['largeur'];
+    $hauteur=$_POST['hauteur'];
+    $cmt=$_POST['cmt'];
+    $dateAjout = date('y/m/j');
+    $idPlateau;
+
+    try {
+
+      for ($x = 0; $x <= 10; $x++) {
+        $idPlateau=$x;
+      }
+      $queryNewPlat="INSERT INTO `safetyglass_db`.`plateau` (`idPlateau`,`numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`, `commentaire`, `date`)
+                     VALUES ('$idPlateau','$numCadre', '0', '$numPlateau', '$largeur', '$hauteur', '$cmt', '$dateAjout')";
+      $addPlat=$db->query($queryNewPlat);
+      echo "succes";
+    }catch(PDOException $e){
+      echo $addPlat . "<br>" . $e->getMessage();
+    }
+  }else {
+    echo "error";
+  }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -120,8 +152,8 @@ foreach ($listUseVol as $row) {
                 </tbody>
             </table>
           </div>
-          <div id="newplat" class="tabcontent">
-                <form id="newplatUseVol" name='plateau' method="get" action="#">
+          <div id="newplat" class="tabcontent"><!-- Form Nouveau Plateau -->
+                <form id="newplatUseVol" name='plateau' method="post" action="usevol.php">
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label control-label plateau">Num Plateau :</label>
                     <div class="col-sm-10">
@@ -162,7 +194,7 @@ foreach ($listUseVol as $row) {
                 </div>
               </form>
           </div>
-          <div id="newchute" class="tabcontent">
+          <div id="newchute" class="tabcontent"> <!-- Form Nouvelle chute-->
             <form id="formnewloss" action="sql_add.php" method="get">
                 <fieldset>
                     <legend>Ajouter une nouvelle chute</legend>

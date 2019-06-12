@@ -21,7 +21,7 @@ USE `safetyglass_db` ;
 -- Table `safetyglass_db`.`plateau`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`plateau` (
-  `idPlateau` INT(10) NOT NULL,
+  `idPlateau` INT(10) NOT NULL AUTO_INCREMENT,
   `idEmplacement` INT(10) NOT NULL,
   `numCadre` VARCHAR(45) NULL DEFAULT NULL,
   `positionCadre` INT(4) NOT NULL,
@@ -65,7 +65,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`usine`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`usine` (
-  `idUsine` INT(10) NOT NULL,
+  `idUsine` INT(10) NOT NULL AUTO_INCREMENT,
   `abreviation` VARCHAR(2) NULL DEFAULT NULL,
   `nomUsine` VARCHAR(45) NULL DEFAULT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
@@ -83,7 +83,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`zone`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`zone` (
-  `idZone` INT(11) NOT NULL,
+  `idZone` INT(11) NOT NULL AUTO_INCREMENT,
   `abreviation` VARCHAR(2) NULL DEFAULT NULL,
   `nomZone` VARCHAR(45) NULL DEFAULT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
@@ -107,7 +107,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`rack`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`rack` (
-  `idRack` INT(10) NOT NULL,
+  `idRack` INT(10) NOT NULL AUTO_INCREMENT,
   `abreviation` VARCHAR(5) NULL DEFAULT NULL,
   `nomRack` VARCHAR(45) NULL DEFAULT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
@@ -131,7 +131,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`emplacement`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`emplacement` (
-  `idEmplacement` INT(10) NOT NULL,
+  `idEmplacement` INT(10) NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NULL DEFAULT NULL,
   `largeurPied` INT(4) NULL DEFAULT NULL,
   `poidsMax` INT(6) NULL DEFAULT NULL,
@@ -309,7 +309,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`sousfamille_type`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`sousfamille_type` (
-  `idSousFamille_Type` INT(10) NOT NULL,
+  `idSousFamille_Type` INT(10) NOT NULL AUTO_INCREMENT,
   `nomSousFamilleType` VARCHAR(45) NULL DEFAULT NULL,
   `fammille_type_idFammille_Type` INT(11) NOT NULL,
   PRIMARY KEY (`idSousFamille_Type`),
@@ -328,7 +328,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`type`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`type` (
-  `idType` INT(10) NOT NULL,
+  `idType` INT(10) NOT NULL AUTO_INCREMENT,
   `nomType` VARCHAR(45) NULL DEFAULT NULL,
   `epType` DOUBLE NULL DEFAULT NULL,
   `masseType` DOUBLE NULL DEFAULT NULL,
@@ -352,7 +352,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `safetyglass_db`.`typedefautagc`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `safetyglass_db`.`typedefautagc` (
-  `idTypeDefautAGC` VARCHAR(1) NOT NULL,
+  `idTypeDefautAGC` VARCHAR(1) NOT NULL AUTO_INCREMENT,
   `descriptionTypeDefaut` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTypeDefautAGC`),
   UNIQUE INDEX `idTypeDefautAGC_UNIQUE` (`idTypeDefautAGC` ASC) VISIBLE)
