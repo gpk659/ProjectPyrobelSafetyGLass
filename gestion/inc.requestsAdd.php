@@ -11,21 +11,21 @@ function addItem($addWord){
 
   // sous famille liste
   $sqlSousFamille = "SELECT idSousFamille_Type, nomSousFamilleType
-                     FROM db_project_pyrobel.sousfamille_type";
+                     FROM  DB_Pyrobel.sousfamille_type";
 
   // Usine
   $sqlUsine = "SELECT idUsine, nomUsine
-               FROM db_project_pyrobel.usine";
+               FROM  DB_Pyrobel.usine";
   $queryUsine = $db->query($sqlUsine);
 
   // Zone
   $sqlZone = "SELECT idZone, description
-              FROM db_project_pyrobel.zone";
+              FROM  DB_Pyrobel.zone";
   $queryZone = $db->query($sqlZone);
 
   // Rack
   $sqlRack = "SELECT idRack, description
-              FROM db_project_pyrobel.rack";
+              FROM  DB_Pyrobel.rack";
   $queryRack = $db->query($sqlRack);
 
 /*  switch ($addWord) {

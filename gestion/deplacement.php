@@ -40,9 +40,9 @@
       <?php
       $sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
                       positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
-              FROM safetyglass_db.listechutte as listchutte,
-                   safetyglass_db.emplacement as emp,
-                   safetyglass_db.rack, safetyglass_db.plateau
+              FROM  DB_Pyrobel.listechutte as listchutte,
+                    DB_Pyrobel.emplacement as emp,
+                    DB_Pyrobel.rack,  DB_Pyrobel.plateau
               where emplacement_idEmplacement = emp.idEmplacement
                     and rack_idRack = idRack
                     and plateau_idPlateau = idPlateau;";
@@ -62,7 +62,7 @@
                 $_SESSION['rack']=$row['rack'];
 
                   $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation, ', Zone : ', nomZone) as nomRack
-                         FROM safetyglass_db.rack as r, safetyglass_db.zone as z
+                         FROM  DB_Pyrobel.rack as r,  DB_Pyrobel.zone as z
                          WHERE r.zone_idZone = z.idZone";
                          $rackSql = $db->query($rack);
                          $modifrack='';

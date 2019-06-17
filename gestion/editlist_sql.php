@@ -13,7 +13,7 @@ if(isset($_GET['rack'])){
   $lrg=$_GET['largeur'];
 
   try {
-    $queryrack="UPDATE `safetyglass_db`.`rack` SET `abreviation` = '$abv', `nomRack` = '$nomRack', `description` = '$des', `largeur` = '$lrg', `longueur` = '$lg'
+    $queryrack="UPDATE ` DB_Pyrobel`.`rack` SET `abreviation` = '$abv', `nomRack` = '$nomRack', `description` = '$des', `largeur` = '$lrg', `longueur` = '$lg'
                 WHERE (`idRack` = '$idrack')";
     $modifrack=$db->query($queryrack);
     echo "succes";
@@ -36,7 +36,7 @@ if(isset($_GET['rack'])){
   $desComplete=$_GET['desComplete'];
 
   try {
-    $querychute="UPDATE `safetyglass_db`.`type` SET `epType` = '$epType', `masseType` = '$masseType', `codeAGCType` = '$codeAGC', `descriptionCourte` = '$desCourte', `descriptionComplete` = '$desComplete'
+    $querychute="UPDATE ` DB_Pyrobel`.`type` SET `epType` = '$epType', `masseType` = '$masseType', `codeAGCType` = '$codeAGC', `descriptionCourte` = '$desCourte', `descriptionComplete` = '$desComplete'
                 WHERE (`idType` = '$idChute')";
     $modifchute=$db->query($querychute);
     echo "succes";
@@ -60,7 +60,7 @@ if(isset($_GET['rack'])){
   $nomF=$_GET['nomF'];
 
   try {
-    $queryplateau="UPDATE `safetyglass_db`.`plateau` SET `numCadre` = '$numCadre', `numPlateau` = '$numPlateau',
+    $queryplateau="UPDATE ` DB_Pyrobel`.`plateau` SET `numCadre` = '$numCadre', `numPlateau` = '$numPlateau',
                           `largeur` = '$largeur', `hauteur` = '$hauteur', `commentaire` = '$cmt', `date` = '$date',
                           `nomFournisseur` = '$nomF'
     WHERE (`idPlateau` = '$idPlateau')";

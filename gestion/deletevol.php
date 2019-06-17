@@ -5,16 +5,16 @@ require "../dbConnect.php";
 
 try {
   $idVol = $_GET['idVol'];
-  $scriptdelvol ="DELETE FROM `listevolume`
+  $scriptdelvol ="DELETE FROM `DB_Pyrobel.listevolume`
                  WHERE `idListeVolume` = ".$idVol;
   $deleteVol=$db->query($scriptdelvol);
 
-  /*$scriptinsert="INSERT INTO `safetyglass_db`.`listevolumesbons` (`numCom`, `lettre`, `largeur`, `hauteur`, `commentaire`) 
+  /*$scriptinsert="INSERT INTO ` DB_Pyrobel`.`listevolumesbons` (`numCom`, `lettre`, `largeur`, `hauteur`, `commentaire`)
                  VALUES ('18,10000', 'A', '150', '150', 'supprime');"*/
 
   echo "success!<br />";
   echo $scriptdelvol;
-  header('Location: http://localhost/SafetyGlassProject/gestion/listvolume.php');
+  //header('Location: http://localhost/SafetyGlassProject/gestion/listvolume.php');
 }
 //catch exception
 catch(Exception $e) {

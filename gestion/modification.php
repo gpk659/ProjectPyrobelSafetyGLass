@@ -10,7 +10,7 @@
   require "../dbConnect.php";
   include_once 'newRequests.php';
 
-  $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM safetyglass_db.plateau";
+  $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM  DB_Pyrobel.plateau";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       <?php
-      $sqlrack="SELECT idRack, abreviation,nomRack, description, largeur, longueur FROM safetyglass_db.rack";
+      $sqlrack="SELECT idRack, abreviation,nomRack, description, largeur, longueur FROM  DB_Pyrobel.rack";
 
           $listrack = $db->query($sqlrack);
 
@@ -83,7 +83,7 @@
     </thead>
     <tbody>
       <?php
-      $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM safetyglass_db.plateau";
+      $sqlplateau="SELECT idPlateau, numCadre, numPlateau, largeur, hauteur, commentaire, date, nomFournisseur FROM  DB_Pyrobel.plateau";
 
           $listplat = $db->query($sqlplateau);
 
@@ -119,7 +119,7 @@
     </thead>
     <tbody>
       <?php
-      $sqlchute="SELECT idType, epType, masseType, codeAGCType, descriptionCourte, descriptionComplete FROM safetyglass_db.type";
+      $sqlchute="SELECT idType, epType, masseType, codeAGCType, descriptionCourte, descriptionComplete FROM  DB_Pyrobel.type";
 
       $listchute = $db->query($sqlchute);
 

@@ -29,7 +29,7 @@ include_once "menu.php";
 <script>
 
     <?php
-        $sql="SELECT idRack, numRack, count(idRack) as nbC FROM mydb.placement as p, mydb.rack as r
+        $sql="SELECT idRack, numRack, count(idRack) as nbC FROM  DB_Pyrobel.placement as p,  DB_Pyrobel.rack as r
               where p.rack_idRack = r.idRack
               group by numRack;";
 

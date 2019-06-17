@@ -56,14 +56,14 @@ include 'secure.php';
             $typechute = $_GET['stype'];
 
             $sql = "SELECT nomChute, hauteur, largeur, numLot, dateChute, numRack, nomEmplacement, nomTypeChute, nomSousTypeChute, positionEmplacement, idSousTypeChute
-               FROM mydb.placement as p,
-                     mydb.emplacement as e,
-                     mydb.rack as r,
-                     mydb.emplacementUsine as eu,
-                     mydb.chute as c,
-                     mydb.type as t,
-                     mydb.soustypechute as stc,
-                     mydb.typechute as tc
+               FROM  DB_Pyrobel.placement as p,
+                      DB_Pyrobel.emplacement as e,
+                      DB_Pyrobel.rack as r,
+                      DB_Pyrobel.emplacementUsine as eu,
+                      DB_Pyrobel.chute as c,
+                      DB_Pyrobel.type as t,
+                      DB_Pyrobel.soustypechute as stc,
+                      DB_Pyrobel.typechute as tc
 
                 where  p.emplacement_idEmplacement = e.idEmplacement
                    and p.rack_idRack = r.idRack

@@ -43,7 +43,7 @@
     }
   }
 
-    $sqlcount="SELECT datelivraison FROM safetyglass_db.listevolume;";
+    $sqlcount="SELECT datelivraison FROM  DB_Pyrobel.listevolume;";
     $nbvols = $db->query($sqlcount);
 
     foreach ($nbvols as $key) {
@@ -171,7 +171,7 @@ include_once "menu.php";
     <tbody>
       <?php
           $sqllistvol = "SELECT idListeVolume,numCom,lettre,x,nnn,datelivraison,typeverre,largeur,hauteur,faconnage,commentaire,chutesug
-                         FROM safetyglass_db.listevolume
+                         FROM DB_Pyrobel.listevolume
                          ORDER BY numCom";
           $listVol = $db->query($sqllistvol);
 
@@ -219,7 +219,7 @@ include_once "menu.php";
     <tbody>
       <?php
           $sqllistvolbon = "SELECT numCom,lettre,largeur,hauteur,datefabrication, commentaire
-                          FROM safetyglass_db.listevolumesbons;";
+                          FROM  DB_Pyrobel.listevolumesbons;";
           $listVolbon = $db->query($sqllistvolbon);
 
               foreach ($listVolbon as $row) {

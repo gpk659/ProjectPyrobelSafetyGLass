@@ -7,58 +7,58 @@ function elementNewLoss($new_r)
     require '../dbConnect.php';
     /* Request emplacement new loss */
     /*$empN="SELECT idEmplacement, nomUsine, u.description,  nomFichierPlan, nomZone, r.nomRack
-            FROM  safetyglass_db.emplacement as e, safetyglass_db.usine as u, safetyglass_db.zone as z, safetyglass_db.rack as r
+            FROM   DB_Pyrobel.emplacement as e,  DB_Pyrobel.usine as u,  DB_Pyrobel.zone as z,  DB_Pyrobel.rack as r
             WHERE e.usine_idUsine = u.idUsine AND e.zone_idZone = z.idZone AND e.rack_idRack = r.idRack";*/
     $empN="SELECT idEmplacement, concat('- Description :  ',description,', Largeur Pied (mm) : ', largeurPied, ', Poids Max (kg) : ' , poidsMax) as infoemp
-            FROM safetyglass_db.emplacement";
+            FROM  DB_Pyrobel.emplacement";
 
     /* Request operateur new loss */
     $opN="SELECT idOperateur, nomOp
-          FROM safetyglass_db.listeoperateur as l, safetyglass_db.usine as u, safetyglass_db.zone as z
+          FROM  DB_Pyrobel.listeoperateur as l,  DB_Pyrobel.usine as u,  DB_Pyrobel.zone as z
           WHERE l.usine_idUsine = u.idUsine AND l.zone_idZone = z.idZone";
     /* Request plateau new loss*/
     $plateauN="SELECT idPlateau, concat('- Num Cadre : ',numCadre, ', Num Plateau :', numPlateau,', Largeur : ',largeur,', Hauteur : ',hauteur) infoplateau
-               FROM safetyglass_db.plateau";
+               FROM  DB_Pyrobel.plateau";
     /* Rack */
     $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation, ', Zone : ', nomZone) as nomRack
-           FROM safetyglass_db.rack as r, safetyglass_db.zone as z
+           FROM  DB_Pyrobel.rack as r,  DB_Pyrobel.zone as z
            WHERE r.zone_idZone = z.idZone";
 
     /* SQL type, soustypechute*/
-    $sql="SELECT idType, nomType FROM safetyglass_db.type";
+    $sql="SELECT idType, nomType FROM  DB_Pyrobel.type";
     $resulttype=$db->query($sql);
 
     $sqlstfamille="SELECT idSousFamille_Type, CONCAT (nomType,' - ',nomSousFamilleType) as nomStype
-                   FROM safetyglass_db.sousfamille_type INNER JOIN safetyglass_db.type
+                   FROM  DB_Pyrobel.sousfamille_type INNER JOIN  DB_Pyrobel.type
                    ON idTypeChute = fk_typeChute";
 
     /* SQL Type */
-    $sqlstype="SELECT idFammille_Type, nomFammille_Type FROM safetyglass_db.fammille_type;";
+    $sqlstype="SELECT idFammille_Type, nomFammille_Type FROM  DB_Pyrobel.fammille_type;";
     $resultsoustype=$db->query($sqlstype);
 
     /* SQL Sous type */
     $sqlSousType="SELECT idType, concat('Description : ' ,descriptionCourte) as infotype
-                  FROM safetyglass_db.type;";
+                  FROM  DB_Pyrobel.type;";
     $resultSStype=$db->query($sqlSousType);
 
     // Usine
     $sqlUsine = "SELECT idUsine, nomUsine
-                 FROM safetyglass_db.usine";
+                 FROM  DB_Pyrobel.usine";
     $queryUsine = $db->query($sqlUsine);
 
     // Zone
-    $sqlZone = "SELECT idZone, nomZone FROM safetyglass_db.zone;";
+    $sqlZone = "SELECT idZone, nomZone FROM  DB_Pyrobel.zone;";
     $queryZone = $db->query($sqlZone);
 
 
     /* emplacement  */
     $sqlEmp = "SELECT idEmplacement, description
-               FROM safetyglass_db.emplacement";
+               FROM  DB_Pyrobel.emplacement";
     $listEmpAdd = $db->query($sqlEmp);
 
     // sous famille liste
     $sqlSousFamille = "SELECT idSousFamille_Type, nomSousFamilleType
-                       FROM safetyglass_db.sousfamille_type";
+                       FROM  DB_Pyrobel.sousfamille_type";
     /*
     * SWITCH pour gérer toutes les requetes SQL.
     * en fonction du nom.
