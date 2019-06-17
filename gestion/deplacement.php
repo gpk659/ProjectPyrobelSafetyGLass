@@ -30,22 +30,27 @@
               <th>Largeur</th>
               <th>Date Mise en Stock</th>
               <th>Commentaire</th>
+              <th>Type</th>
               <th>Position</th>
               <th>Plateau</th>
-              <th>Emplacement</th>
+              <th>Rack</th>
               <th>Modification Rack</th>
           </tr>
       </thead>
       <tbody>
       <?php
       $sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
-                      positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
+                      positionEmp,plateau_idPlateau, abreviation as rack, numPlateau, descriptionCourte as type
               FROM  DB_Pyrobel.listechutte as listchutte,
                     DB_Pyrobel.emplacement as emp,
-                    DB_Pyrobel.rack,  DB_Pyrobel.plateau
+                    DB_Pyrobel.rack,  DB_Pyrobel.plateau,
+                    DB_Pyrobel.type
               where emplacement_idEmplacement = emp.idEmplacement
                     and rack_idRack = idRack
-                    and plateau_idPlateau = idPlateau;";
+                    and plateau_idPlateau = idPlateau
+                    and type_idType = idType";
+
+      //$qte="SELECT count(*) as qte FROM db_pyrobel.listechutte group by emplacement_idEmplacement";
 
       $listChute = $db->query($sql);
               //print_r($listRack);
@@ -56,12 +61,13 @@
                         <td>" . $row['lg'] . "</td>
                         <td>" . $row['dateMiseStock'] . "</td>
                         <td>" . $row['cmt'] . "</td>
-                        <td>" . $row['positionEmp'] . "</td>
+                        <td>" . $row['type'] . "</td>
+                        <td>" . $row['positionEmp'] . "/4</td>
                         <td>" . $row['numPlateau'] . "</td>
                         <td>" . $row['rack'] . "</td>";
                 $_SESSION['rack']=$row['rack'];
 
-                  $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation, ', Zone : ', nomZone) as nomRack
+                  $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation) as nomRack
                          FROM  DB_Pyrobel.rack as r,  DB_Pyrobel.zone as z
                          WHERE r.zone_idZone = z.idZone";
                          $rackSql = $db->query($rack);

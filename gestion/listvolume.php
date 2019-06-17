@@ -49,6 +49,35 @@
     foreach ($nbvols as $key) {
       etatVolume($key['datelivraison']);
     }
+
+if($_POST){
+  try {
+    $nb = 1;
+    $qte=$POST['quantite'];
+
+      while($nb <= $qte){
+        $numCom=$POST['numCom'];
+        $lettre=$POST['lettre'];
+        $qte=$POST['quantite'];
+        $largeur=$POST['largeur'];
+        $hauteur=$POST['hauteur'];
+        $fac=$POST['faconnage'];
+        $cmt=$POST['comment'];
+        $date=$POST['datelivraison'];
+        $type=$POST['typeverre'];
+
+        $newVol="INSERT INTO `DB_Pyrobel`.`listevolume` (`idListeVolume`, `numCom`, `lettre`, `x`, `nnn`, `datelivraison`, `typeverre`, `largeur`, `hauteur`, `faconnage`, `commentaire`)
+        VALUES ('$numCom', '$lettre', '$qte', '$nb', '$date', '$type', '$largeur', '$hauteur', '$fac', '$cmt')";
+
+        $nb++;
+        $addVol=$db->query($newVol);
+          echo "succes";
+        }
+      }catch(PDOException $e){
+        echo $addPlat . "<br>" . $e->getMessage();
+      }
+  }
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -93,7 +122,7 @@ include_once "menu.php";
 
 <hr />
 <div id="addVol" class="tabcontent"> <!-- Formulaire ajouter un volume -->
-  <form id="newVolume" action="index.html" method="post">
+  <form id="newVolume" action="listevolume.php" method="post">
     <fieldset class="form_add">
       <legend> Ajout Volume </legend>
       <div class="form-group row">
@@ -128,6 +157,16 @@ include_once "menu.php";
             <input class="form-control" type="number" step="1" min="1" name="hauteur" placeholder="Hauteur (mm)" required>
         </div>
       </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date de livraison</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="date" name="datelivraison" placeholder="" required>
+        </div>
+      </div>
+
+      <?php  elementNewLoss('typeChute');?>
+
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Façonnage</label>
         <div class="col-sm-10">

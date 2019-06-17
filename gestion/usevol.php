@@ -30,11 +30,8 @@
 
     try {
 
-      for ($x = 0; $x <= 10; $x++) {
-        $idPlateau=$x;
-      }
-      $queryNewPlat="INSERT INTO `safetyglass_db`.`plateau` (`idPlateau`,`numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`, `commentaire`, `date`)
-                     VALUES ('$idPlateau','$numCadre', '0', '$numPlateau', '$largeur', '$hauteur', '$cmt', '$dateAjout')";
+      $queryNewPlat="INSERT INTO `safetyglass_db`.`plateau` (`numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`, `commentaire`, `date`)
+                     VALUES ($numCadre', '0', '$numPlateau', '$largeur', '$hauteur', '$cmt', '$dateAjout')";
       $addPlat=$db->query($queryNewPlat);
       echo "succes";
     }catch(PDOException $e){
