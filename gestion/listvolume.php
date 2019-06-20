@@ -50,33 +50,8 @@
       etatVolume($key['datelivraison']);
     }
 
-if($_POST){
-  try {
-    $nb = 1;
-    $qte=$POST['quantite'];
 
-      while($nb <= $qte){
-        $numCom=$POST['numCom'];
-        $lettre=$POST['lettre'];
-        $qte=$POST['quantite'];
-        $largeur=$POST['largeur'];
-        $hauteur=$POST['hauteur'];
-        $fac=$POST['faconnage'];
-        $cmt=$POST['comment'];
-        $date=$POST['datelivraison'];
-        $type=$POST['typeverre'];
 
-        $newVol="INSERT INTO `DB_Pyrobel`.`listevolume` (`idListeVolume`, `numCom`, `lettre`, `x`, `nnn`, `datelivraison`, `typeverre`, `largeur`, `hauteur`, `faconnage`, `commentaire`)
-        VALUES ('$numCom', '$lettre', '$qte', '$nb', '$date', '$type', '$largeur', '$hauteur', '$fac', '$cmt')";
-
-        $nb++;
-        $addVol=$db->query($newVol);
-          echo "succes";
-        }
-      }catch(PDOException $e){
-        echo $addPlat . "<br>" . $e->getMessage();
-      }
-  }
 
 ?>
 
@@ -93,7 +68,7 @@ include_once "menu.php";
 <hr />
 
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'addVol')"> Ajouter un volume </button>
+    <button class="tablinks" onclick="openCity(event, 'addVol')"> Nouveau volume </button>
     <button class="tablinks" onclick="openCity(event, 'listVol')"> Liste volumes </button>
     <button class="tablinks" onclick="openCity(event, 'listVolBon')"> Liste volumes faits </button>
 
@@ -122,23 +97,22 @@ include_once "menu.php";
 
 <hr />
 <div id="addVol" class="tabcontent"> <!-- Formulaire ajouter un volume -->
-  <form id="newVolume" action="listevolume.php" method="post">
+  <form id="newVolume" action="newVolSql.php" method="post">
     <fieldset class="form_add">
-      <legend> Ajout Volume </legend>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">NumCom</label>
+        <label class="col-sm-2 col-form-label">NumCom :</label>
         <div class="col-sm-10">
             <input class="form-control" type="text" name="numCom" placeholder="Ex : 18,12345" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Lettre</label>
+        <label class="col-sm-2 col-form-label">Lettre :</label>
         <div class="col-sm-10">
             <input class="form-control" type="text" name="lettre" placeholder="Lettre" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Qté totale de volume identique (x)</label>
+        <label class="col-sm-2 col-form-label">Qté totale de volume identique (x) :</label>
         <div class="col-sm-10">
             <input class="form-control" type="number" name="quantite" placeholder="x" required>
         </div>
@@ -146,37 +120,39 @@ include_once "menu.php";
       <!-- ajouter automatiquement le nb de volumes identique avec leur numero  -->
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Largeur</label>
+        <label class="col-sm-2 col-form-label">Largeur :</label>
         <div class="col-sm-10">
             <input class="form-control" type="number" step="1" min="1" name="largeur" placeholder="Largeur (mm)" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Hauteur</label>
+        <label class="col-sm-2 col-form-label">Hauteur :</label>
         <div class="col-sm-10">
             <input class="form-control" type="number" step="1" min="1" name="hauteur" placeholder="Hauteur (mm)" required>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Date de livraison</label>
+        <label class="col-sm-2 col-form-label">Date de livraison :</label>
         <div class="col-sm-10">
             <input class="form-control" type="date" name="datelivraison" placeholder="" required>
         </div>
       </div>
 
-      <?php  elementNewLoss('typeChute');?>
+      <div class="form-group row">
+        <?php  elementNewLoss('chute');?>
+      </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Façonnage</label>
+        <label class="col-sm-2 col-form-label">Façonnage :</label>
         <div class="col-sm-10">
             <input class="form-control" type="textarea" name="faconnage" placeholder="Façonnage" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Commentaire</label>
+        <label class="col-sm-2 col-form-label">Commentaire :</label>
         <div class="col-sm-10">
-            <input class="form-control" type="textarea" name="comment" placeholder="Commentaire" required>
+            <input class="form-control" type="textarea" name="comment" placeholder="Commentaire">
         </div>
       </div>
 

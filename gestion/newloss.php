@@ -41,14 +41,6 @@
             <div class="form-group">
                 <?php elementNewLoss('plateau');  ?>
             </div>
-
-            <div>
-              <label for="">Nouveau plateau : </label>
-              <input type="text" class="form-control" name="numcadre" value="" placeholder="Num Cadre">
-              <input type="text" class="form-control" name="numPlateau" value="" placeholder="Num Plateau">
-              <input type="text" class="form-control" name="largeur" value="" placeholder="Largeur">
-              <input type="text" class="form-control" name="hauteur" value="" placeholder="Hauteur">
-            </div>
             <hr>
             <div class="form-group">
                 <label>Commentaire :</label>

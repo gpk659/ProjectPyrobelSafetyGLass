@@ -37,8 +37,6 @@
     }catch(PDOException $e){
       echo $addPlat . "<br>" . $e->getMessage();
     }
-  }else {
-    echo "error";
   }
 ?>
 
@@ -114,23 +112,36 @@ foreach ($listUseVol as $row) {
                 <tbody>
                   <?php
                       $sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
-                                     positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau
-                              FROM safetyglass_db.listechutte as listchutte,
-                                   safetyglass_db.emplacement as emp,
-                                   safetyglass_db.rack, safetyglass_db.plateau
+                                     positionEmp,plateau_idPlateau, concat(nomRack,' - ',abreviation) as rack, numPlateau, emplacement_idEmplacement as idEmp
+                              FROM DB_Pyrobel.listechutte as listchutte,
+                                   DB_Pyrobel.emplacement as emp,
+                                   DB_Pyrobel.rack, safetyglass_db.plateau
                               where emplacement_idEmplacement = emp.idEmplacement
                                     and rack_idRack = idRack
                                     and plateau_idPlateau = idPlateau
-                                    and (listchutte.largeur  >= '$largeur' and listchutte.hauteur >= '$hauteur')";
+                                    and (listchutte.largeur  >= '$largeur' and listchutte.hauteur >= '$hauteur');";
 
                       $listChute = $db->query($sql);
 
                           foreach ($listChute as $row) {
+
+                            $idemp= $row['idEmp'];
+
+                            $sqlnbchutte = "SELECT count(*) as nb
+                                           FROM DB_Pyrobel.listechutte
+                                           WHERE emplacement_idEmplacement = $idemp
+                                           GROUP BY emplacement_idEmplacement";
+                            $nbchutte = $db->query($sqlnbchutte);
+
                             $idchute=$row['idChutte'];
                             $ht=$row['ht'];
                             $lg=$row['lg'];
                             $cmt='fait';
                             $datefab=date('Y-m-d');
+
+                            foreach ($nbchutte as $key) {
+                                $nb=$key['nb'];
+
                                   echo "<tr class='lignetab'>
                                           <td>".$row['idChutte']."</td>
                                           <td>" . $row['ht'] . "</td>
@@ -142,9 +153,10 @@ foreach ($listUseVol as $row) {
 
                                           echo " %</td>
                                           <td>".$row['rack']."</td>
-                                          <td>" . $row['positionEmp'] . "/4</td>
+                                          <td>" . $row['positionEmp'] . "/$nb</td>
                                           <td> <a href='usevolchute.php?idChutte=$idchute&idVol=$idVol&ht=$ht&lg=$lg&date=$datefab&cmt=$cmt&numcom=$numerocom&lettre=$numlettre'>Utiliser</a> </td>";
                               }
+                            }
                   ?>
                 </tbody>
             </table>

@@ -8,10 +8,12 @@ $(document).ready(function(){
   // Ajout d'un champ pour filtrer le type de verre.
 /*=============================================================== */
   // Setup - add a text input to each footer cell.
-  $('#office').each(function () {
+  $('#office, #typelistchute').each(function () {
     var title = $(this).text();
     $(this).html('<input type="text" class="form-control" placeholder="' + title + '" />');
   });
+
+
 
   var tableVol = $('#tableVolToDo').DataTable({
     "language" : {

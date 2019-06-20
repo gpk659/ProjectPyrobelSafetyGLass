@@ -25,7 +25,7 @@ function elementNewLoss($new_r)
            WHERE r.zone_idZone = z.idZone";
 
     /* SQL type, soustypechute*/
-    $sql="SELECT idType, nomType FROM  DB_Pyrobel.type";
+    $sql="SELECT idType, codeAGCType FROM  DB_Pyrobel.type";
     $resulttype=$db->query($sql);
 
     $sqlstfamille="SELECT idSousFamille_Type, CONCAT (nomType,' - ',nomSousFamilleType) as nomStype
@@ -105,13 +105,14 @@ function elementNewLoss($new_r)
             echo "</select>";
             break;
         case 'typeChute':
-            echo "<label for='stype'> Type :</label>";
+            echo "<label class=\"col-sm-2 col-form-label\" for='stype'> Type :</label>";
+            echo "<div class=\"col-sm-10\">";
             echo "<select class=\"custom-select\" id='typechute' name='stype' size='1' required>
                       <option name='sousType' value='' disabled selected hidden>Sélectionner un type...</option>";
             foreach ($resultsoustype as $item){
                 echo " <option name='sousType' value=".$item['idFammille_Type']." id=".$item['idFammille_Type'].">".$item['nomFammille_Type']."</option>";
             }
-            echo "</select>";
+            echo "</select></div>";
             break;
         case 'SoustypeChute':
             echo "<label for='stype'> Type de chute :</label>";
@@ -149,6 +150,17 @@ function elementNewLoss($new_r)
               }
             echo "</select>";
             break;
+
+         case 'chute':
+                echo "<label class=\"col-sm-2 col-form-label\" for='stype'> Type :</label>";
+                echo "<div class=\"col-sm-10\">";
+                echo "<select class=\"custom-select\" id='typechute' name='stype' size='1' required>
+                          <option name='sousType' value='' disabled selected hidden>Sélectionner un type...</option>";
+                foreach ($resulttype as $item){
+                    echo " <option name='type' value=".$item['codeAGCType']." id=".$item['idType'].">".$item['codeAGCType']."</option>";
+                }
+                echo "</select></div>";
+                break;
         default:
             'error';
     }

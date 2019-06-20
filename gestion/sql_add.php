@@ -11,26 +11,23 @@ $hauteur=$_GET['hauteurChute'];
 $largeur=$_GET['largeurChute'];
 $type=$_GET['stype'];
 $day=date("Y-m-d");
-$time=date("H:i:s");
-//$placement=$_GET['emp'];
-$plateau=$_GET['plateau'];
 
 $comment=$_GET['comment'];
 
-echo "<p>Hauteur : $hauteur</p>
-      <p>Largeur : $largeur</p>
-      <p>Type : $type</p>
-      <p>Day : $day</p>
-      <p>Time : $time</p>
-      <p>Plateau : $plateau</p>";
+$type=$_GET['stype'];
+$emp=$_GET['listerack'];
+$plateau=$_GET['plateau'];
 
-$insertloss="INSERT INTO `safetyglass_db`.`listechutte` (`largeur`, `hauteur`, `type_idType`, `dateMiseStock`, `heureMiseStock`,`commentaire`,`plateau_idPlateau`,`emplacement_idEmplacement`)
+try {
 
+  $insertloss="INSERT INTO `DB_Pyrobel`.`listechutte` (`largeur`, `hauteur`, `dateMiseStock`,`commentaire`, `positionEmp`, `plateau_idPlateau`, `emplacement_idEmplacement`, `type_idType`)
 
-VALUES ('".$largeur."','".$hauteur."','".$type."','".$day."','".$time."','".$comment."','".$plateau."','1')";
+  VALUES ('".$largeur."','".$hauteur."','".$day."','".$comment."','1','".$plateau."','".$emp."','".$type."')";
 
-
-//$addloss=$db->query($insertloss);
-
-header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
-exit();
+  $addloss=$db->query($insertloss);
+  echo "succes";
+  header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
+  exit();
+}catch(PDOException $e){
+  echo $addloss . "<br>" . $e->getMessage();
+}

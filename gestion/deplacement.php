@@ -10,6 +10,8 @@
   require '../dbConnect.php';
   include_once 'newRequests.php';
   $_SESSION['rack']="";
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="fr">
@@ -30,7 +32,7 @@
               <th>Largeur</th>
               <th>Date Mise en Stock</th>
               <th>Commentaire</th>
-              <th>Type</th>
+              <th id="typelistchute">Type de verre</th>
               <th>Position</th>
               <th>Plateau</th>
               <th>Rack</th>
@@ -40,12 +42,12 @@
       <tbody>
       <?php
       $sql = "SELECT idChutte,listchutte.largeur as lg, listchutte.hauteur as ht, dateMiseStock, listchutte.commentaire as cmt,
-                      positionEmp,plateau_idPlateau, abreviation as rack, numPlateau, descriptionCourte as type
+                      positionEmp,plateau_idPlateau, abreviation as rack, numPlateau, descriptionCourte as type, emplacement_idEmplacement as idEmp
               FROM  DB_Pyrobel.listechutte as listchutte,
                     DB_Pyrobel.emplacement as emp,
                     DB_Pyrobel.rack,  DB_Pyrobel.plateau,
                     DB_Pyrobel.type
-              where emplacement_idEmplacement = emp.idEmplacement
+              WHERE emplacement_idEmplacement = emp.idEmplacement
                     and rack_idRack = idRack
                     and plateau_idPlateau = idPlateau
                     and type_idType = idType";
@@ -55,6 +57,17 @@
       $listChute = $db->query($sql);
               //print_r($listRack);
               foreach ($listChute as $row) {
+                $idemp= $row['idEmp'];
+
+                $sqlnbchutte = "SELECT count(*) as nb
+                               FROM DB_Pyrobel.listechutte
+                               WHERE emplacement_idEmplacement = $idemp
+                               GROUP BY emplacement_idEmplacement";
+                $nbchutte = $db->query($sqlnbchutte);
+
+              foreach ($nbchutte as $key) {
+                  $nb=$key['nb'];
+                
                 echo "<tr id=".$row['idChutte'].">
                         <td>".$row['idChutte']."</td>
                         <td>" . $row['ht'] . "</td>
@@ -62,7 +75,7 @@
                         <td>" . $row['dateMiseStock'] . "</td>
                         <td>" . $row['cmt'] . "</td>
                         <td>" . $row['type'] . "</td>
-                        <td>" . $row['positionEmp'] . "/4</td>
+                        <td>" . $row['positionEmp'] . "/$nb</td>
                         <td>" . $row['numPlateau'] . "</td>
                         <td>" . $row['rack'] . "</td>";
                 $_SESSION['rack']=$row['rack'];
@@ -82,6 +95,7 @@
                   echo "</select><a href='edit.inc.php'>
                                   <i class='far fa-edit'></i>
                                  </a></td>";
+                }
               }
       ?>
       </tbody>
