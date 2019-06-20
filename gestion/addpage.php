@@ -26,7 +26,6 @@
         <button class="tablinks" onclick="openCity(event, 'addUser')"> Ajout Opérateur </button>
         <button class="tablinks" onclick="openCity(event, 'addType')"> Ajout Type </button>
         <button class="tablinks" onclick="openCity(event, 'addRack')"> Ajout Rack </button>
-        <button class="tablinks" onclick="openCity(event, 'addEmp')"> Ajout Emplacement </button>
     </div>
 <hr />
     <div id="addUser" class="tabcontent">
@@ -93,6 +92,18 @@
                       <?php elementNewLoss('sousfamille'); ?>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Description courte</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="desc" placeholder="Description courte"  required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Description Complète</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="descc" placeholder="Description complète"  required>
+                    </div>
+                </div>
                 <div class="boutonsubmit">
                     <input type="submit" class="btn btn-primary" value="Ajouter">
                 </div>
@@ -111,9 +122,9 @@
                     </div>
                 </div>
                 <div  class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nom Position</label>
+                    <label class="col-sm-2 col-form-label">Nom Rack</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" name="nomPos" placeholder="Nom Position" required>
+                        <input class="form-control" type="text" name="nameRack" placeholder="Nom Rack" required>
                     </div>
                 </div>
                 <div  class="form-group row">

@@ -15,13 +15,13 @@ $description    = $_POST['description'];
 $largeur        = $_POST['largeur'];
 $poids          = $_POST['poids'];
 $usine          = $_POST['usine'];
-$zone           = $_POST['zone'];
-$rack           = $_POST['rack'];
+$zone           = $_POST['listezone'];
+$rack           = $_POST['listerack'];
 
     try{
-        $sqlAddEmp = "INSERT INTO `db_project_pyrobel`.`emplacement`(`idEmplacement`,`description`,`largeurPied`,`poidsMax`,`usine_idUsine`,`zone_idZone`,`rack_idRack`)
+        $sqlAddEmp = "INSERT INTO `DB_Pyrobel`.`emplacement`(`description`,`largeurPied`,`poidsMax`,`usine_idUsine`,`zone_idZone`,`rack_idRack`)
                       VALUES
-                      ('5','$description','$largeur','$poids','$usine','$zone','$rack');";
+                      ('$description','$largeur','$poids','$usine','$zone','$rack')";
 
         $insertEmp = $db->query($sqlAddEmp);
 

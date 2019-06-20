@@ -11,22 +11,23 @@ require '../../dbConnect.php';
 include '../secure.php';
 
     $abrev = $_POST['abrev'];
-    $nomPos = $_POST['nomPos'];
     $desc = $_POST['desc'];
     $largeur = $_POST['largeur'];
     $longeur = $_POST['longeur'];
     $xo = $_POST['xo'];
     $yo = $_POST['yo'];
     $listZone = $_POST['listZone'];
+    $nomRack = $_POST['nameRack'];
 
 try {
-    $sqlAddRack = "INSERT INTO `db_project_pyrobel`.`rack`(`idRack`,`abreviation`,`nomPosition`,`description`,`largeur`,`longueur`,`X0`,`Y0`,`zone_idZone`)
-                       VALUES ('51','$abrev','$nomPos','$desc','$largeur','$longeur','$xo','$yo','$listZone')";
+    $sqlAddRack = "INSERT INTO `DB_Pyrobel`.`rack` (`abreviation`, `nomRack`, `description`, `largeur`, `longueur`, `X0`, `Y0`, `zone_idZone`)
+                   VALUES ('$abrev','$nomRack','$desc','$largeur','$longeur','$xo','$yo','$listZone')";
+
 
     $inserRack = $db->query($sqlAddRack);
-    echo "reussi ?!";
+    echo "success";
+    header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
 }catch (PDOException $e){
-    echo $sqlAddRack. "<br>". $e->getMessage();
+    echo $inserRack. "<br>". $e->getMessage();
 }
-?>
 ?>

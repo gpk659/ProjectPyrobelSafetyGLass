@@ -17,7 +17,7 @@ if(empty($_POST['username']) && empty($_POST['password'])){
     $password = $_POST['password'];
 
     try{
-        $sqlAddUser = "INSERT INTO safetyglass_db.user (`name`, `password`) 
+        $sqlAddUser = "INSERT INTO DB_Pyrobel.user (`name`, `password`) 
                        VALUES ('$username', '$password')";
 
         $insertUser = $db->query($sqlAddUser);

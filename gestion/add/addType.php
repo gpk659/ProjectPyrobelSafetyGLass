@@ -15,15 +15,17 @@ include '../secure.php';
     $masseType = $_POST['masseType'];
     $codeAGCType = $_POST['codeAGCType'];
     $sousFamille = $_POST['sousFamille'];
+    $descourte = $_POST['desc'];
+    $descomp = $_POST['descc'];
 
 
     try {
-        $sqlAddType = "INSERT INTO `db_project_pyrobel`.`type` (`idType`,`nomType`, `epType`, `masseType`, `codeAGCType`, `sousfamille_type_idSousFamille_Type`) 
-                       VALUES ('51','$nomType','$epType','$masseType','$codeAGCType','$sousFamille')";
+        $sqlAddType = "INSERT INTO `DB_Pyrobel`.`type` (`nomType`, `epType`, `masseType`, `codeAGCType`, `sousfamille_type_idSousFamille_Type`, `descriptionCourte`, `descriptionComplete`)
+                       VALUES ('$nomType','$epType','$masseType','$codeAGCType','$sousFamille','$descourte','$descourte')";
 
         $inserType = $db->query($sqlAddType);
-        echo "reussi ?!";
-        echo $sqlAddType;
+        echo "success";
+        header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
     }catch (PDOException $e){
         echo $sqlAddType. "<br>". $e->getMessage();
     }
