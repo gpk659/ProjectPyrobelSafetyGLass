@@ -34,8 +34,8 @@
               <th>Commentaire</th>
               <th id="typelistchute">Type de verre</th>
               <th>Position</th>
-              <th>Plateau</th>
               <th>Rack</th>
+              <th>Plateau</th>
               <th>Modification Rack</th>
           </tr>
       </thead>
@@ -67,7 +67,7 @@
 
               foreach ($nbchutte as $key) {
                   $nb=$key['nb'];
-                
+
                 echo "<tr id=".$row['idChutte'].">
                         <td>".$row['idChutte']."</td>
                         <td>" . $row['ht'] . "</td>
@@ -76,8 +76,8 @@
                         <td>" . $row['cmt'] . "</td>
                         <td>" . $row['type'] . "</td>
                         <td>" . $row['positionEmp'] . "/$nb</td>
-                        <td>" . $row['numPlateau'] . "</td>
-                        <td>" . $row['rack'] . "</td>";
+                        <td>" . $row['rack'] . "</td>
+                        <td>" . $row['numPlateau'] . "</td>";
                 $_SESSION['rack']=$row['rack'];
 
                   $rack="SELECT idRack, CONCAT(nomRack ,' - ', r.abreviation) as nomRack
@@ -100,6 +100,7 @@
       ?>
       </tbody>
     </table>
+    <a href="#" class="btn btn-success pull-right"><i class="glyphicon glyphicon-export"></i>&nbsp;Exporter</a> 
     <footer>
         <span class="credit">v. 0.1 - © P. G.</span>
     </footer>

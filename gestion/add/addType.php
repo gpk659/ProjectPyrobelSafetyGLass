@@ -25,7 +25,7 @@ include '../secure.php';
 
         $inserType = $db->query($sqlAddType);
         echo "success";
-        header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
+        header('Location: http://localhost/SafetyGlassProject/gestion/addpage.php');
     }catch (PDOException $e){
         echo $sqlAddType. "<br>". $e->getMessage();
     }

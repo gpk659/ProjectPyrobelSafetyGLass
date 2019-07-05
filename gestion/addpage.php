@@ -136,25 +136,25 @@
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">Largeur</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="largeur" placeholder="Largeur" required>
+                        <input class="form-control" type="number" name="largeur" placeholder="Largeur" value='3210' required>
                     </div>
                 </div>
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">Longueur</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="longeur" placeholder="Longueur" required>
+                        <input class="form-control" type="number" name="longeur" placeholder="Longueur" value='2250' required>
                     </div>
                 </div>
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">X0</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="xo" placeholder="XO" required>
+                        <input class="form-control" type="number" name="xo" placeholder="XO" value='0' required>
                     </div>
                 </div>
                 <div  class="form-group row">
                     <label class="col-sm-2 col-form-label">Y0</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="number" name="yo" placeholder="YO" required>
+                        <input class="form-control" type="number" name="yo" placeholder="YO" value='0' required>
                     </div>
                 </div>
 

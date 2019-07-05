@@ -20,13 +20,21 @@ $plateau=$_GET['plateau'];
 
 try {
 
+  $countChutte="SELECT count(*)+1 as NB FROM `DB_Pyrobel`.`listechutte` WHERE emplacement_idEmplacement = '$emp'";
+  $queryCount = $db->query($countChutte);
+  foreach ($queryCount as $key) {
+    $nb=$key['NB'];
+
+
+
   $insertloss="INSERT INTO `DB_Pyrobel`.`listechutte` (`largeur`, `hauteur`, `dateMiseStock`,`commentaire`, `positionEmp`, `plateau_idPlateau`, `emplacement_idEmplacement`, `type_idType`)
 
-  VALUES ('".$largeur."','".$hauteur."','".$day."','".$comment."','1','".$plateau."','".$emp."','".$type."')";
+  VALUES ('".$largeur."','".$hauteur."','".$day."','".$comment."','$nb','".$plateau."','".$emp."','".$type."')";
 
   $addloss=$db->query($insertloss);
   echo "succes";
-  header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
+  }
+  //header('Location: http://localhost/SafetyGlassProject/gestion/newloss.php');
   exit();
 }catch(PDOException $e){
   echo $addloss . "<br>" . $e->getMessage();

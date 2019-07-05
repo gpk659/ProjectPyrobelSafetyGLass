@@ -5,10 +5,8 @@
  * Date: 25-09-18
  * Time: 11:45
  */
-session_start();
 
 require '../../dbConnect.php';
-include '../secure.php';
 
 if(empty($_POST['username']) && empty($_POST['password'])){
     echo "Les champs sont vides!";
@@ -17,11 +15,11 @@ if(empty($_POST['username']) && empty($_POST['password'])){
     $password = $_POST['password'];
 
     try{
-        $sqlAddUser = "INSERT INTO DB_Pyrobel.user (`name`, `password`) 
-                       VALUES ('$username', '$password')";
+        $sqlAddUser = "INSERT INTO DB_Pyrobel.user (`name`, `password`, `nivdroit`)
+                       VALUES ('$username', '$password','9')";
 
         $insertUser = $db->query($sqlAddUser);
-        header('Location: http://localhost/SafetyGlassProject/addpage.php');
+        header('Location: http://localhost/SafetyGlassProject/gestion/addpage.php');
     }catch (PDOException $e){
         echo $sqlAddUser. "<br>". $e->getMessage();
     }

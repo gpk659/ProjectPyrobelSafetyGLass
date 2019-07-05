@@ -10,14 +10,14 @@
 
   if(isset($_SESSION["pseudo"])){header('Location: http://localhost/SafetyGlassProject/gestion/acceuil.php');}
 
-  $sql='SELECT name FROM safetyglass_db.user';
+  $sql='SELECT name FROM DB_Pyrobel.user';
 
   $listUser=$db->query($sql);
 
   if($_POST) //On check le mot de passe
   {
       $query=$db->prepare('SELECT iduser, name, password,nivdroit
-          FROM safetyglass_db.user WHERE name = :pseudo');
+          FROM DB_Pyrobel.user WHERE name = :pseudo');
       $query->bindValue(':pseudo',$_POST['pseudo'], PDO::PARAM_STR);
       $query->execute();
       $data=$query->fetch();
@@ -30,7 +30,7 @@
           try {
             // insertion date, heure de la dernier Connexion
             $lastTimeLogin = date('h:i:s-j/m/y');
-            $sqlUpdate="UPDATE `safetyglass_db`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
+            $sqlUpdate="UPDATE `DB_Pyrobel`.`user` SET `dateLastLogin` = '$lastTimeLogin' WHERE (`iduser` = '".$_SESSION['id']."')";
             $stmt=$db->query($sqlUpdate);
             $stmt->execute();
           }catch(PDOException $e){
@@ -102,7 +102,7 @@
                 </div>
                 <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
                     <input class="input100" type="password" name="password" required>
-                    <span class="focus-input100" data-placeholder="Password"></span>
+                    <span class="focus-input100" data-placeholder="Mot de passe"></span>
                 </div>
                 <div>
                     <?php echo $message; ?>

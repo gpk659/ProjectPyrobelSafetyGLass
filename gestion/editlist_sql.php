@@ -13,16 +13,15 @@ if(isset($_GET['rack'])){
   $lrg=$_GET['largeur'];
 
   try {
-    $queryrack="UPDATE ` DB_Pyrobel`.`rack` SET `abreviation` = '$abv', `nomRack` = '$nomRack', `description` = '$des', `largeur` = '$lrg', `longueur` = '$lg'
+    $queryrack="UPDATE `DB_Pyrobel`.`rack` SET `abreviation` = '$abv', `nomRack` = '$nomRack', `description` = '$des', `largeur` = '$lrg', `longueur` = '$lg'
                 WHERE (`idRack` = '$idrack')";
     $modifrack=$db->query($queryrack);
     echo "succes";
+    header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
+    exit();
   }catch(PDOException $e){
     echo $modifrack . "<br>" . $e->getMessage();
   }
-
-  header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
-  exit();
 
 }else if(isset($_GET['chute'])){
 
@@ -34,18 +33,19 @@ if(isset($_GET['rack'])){
   $codeAGC=$_GET['codeAGC'];
   $desCourte=$_GET['desCourte'];
   $desComplete=$_GET['desComplete'];
-
+$modifchute;
   try {
-    $querychute="UPDATE ` DB_Pyrobel`.`type` SET `epType` = '$epType', `masseType` = '$masseType', `codeAGCType` = '$codeAGC', `descriptionCourte` = '$desCourte', `descriptionComplete` = '$desComplete'
+    $querychute="UPDATE `DB_Pyrobel`.`type` SET `epType` = '$epType', `masseType` = '$masseType', `codeAGCType` = '$codeAGC', `descriptionCourte` = '$desCourte', `descriptionComplete` = '$desComplete'
                 WHERE (`idType` = '$idChute')";
     $modifchute=$db->query($querychute);
     echo "succes";
+    header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
+    exit();
   }catch(PDOException $e){
     echo $modifchute . "<br>" . $e->getMessage();
   }
 
-  header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
-  exit();
+
 
 }else if(isset($_GET['plateau'])){
 
@@ -60,18 +60,19 @@ if(isset($_GET['rack'])){
   $nomF=$_GET['nomF'];
 
   try {
-    $queryplateau="UPDATE ` DB_Pyrobel`.`plateau` SET `numCadre` = '$numCadre', `numPlateau` = '$numPlateau',
-                          `largeur` = '$largeur', `hauteur` = '$hauteur', `commentaire` = '$cmt', `date` = '$date',
+    $queryplateau="UPDATE `DB_Pyrobel`.`plateau` SET `numCadre` = '$numCadre', `numPlateau` = '$numPlateau',
+                          `largeur` = '$largeur',`commentaire` = '$cmt', `date` = '$date',
                           `nomFournisseur` = '$nomF'
     WHERE (`idPlateau` = '$idPlateau')";
     $modifPlateau=$db->query($queryplateau);
     echo "succes";
+    header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
+    exit();
   }catch(PDOException $e){
-    echo $sql . "<br>" . $e->getMessage();
+    echo $modifPlateau . "<br>" . $e->getMessage();
   }
 
-  header('Location: http://localhost/SafetyGlassProject/gestion/modification.php');
-  exit();
+
 }else{
   echo "error";
 }

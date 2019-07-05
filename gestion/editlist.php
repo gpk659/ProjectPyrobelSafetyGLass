@@ -31,7 +31,7 @@ if($_GET['typem'] == "rack"){
         Modification Rack : <br />";
   ?>
   <div>
-    <form id="editRack" name='rack' method="get" action="editlist_sql.php">
+    <form id="editRack" name='rack' method="get" action="editlistracksql.php">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label control-label">Abreviation :</label>
         <div class="col-sm-10">
