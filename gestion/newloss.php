@@ -53,33 +53,21 @@
             </div>-->
             <div class="boutonsubmit">
                 <button type="submit" class="btn btn-primary">Ajouter</button>
-                <button type="button" id="printbutton" class="btn btn-primary">Imprimer</button>
+              <!--  <button type="button" id="printbutton" class="btn btn-primary">Imprimer</button> -->
+
             </div>
         </fieldset>
     </form>
-
+<button type="button" onclick="printContent('formnewloss')" class="btn btn-primary">Imprimer</button>
 </main>
 <script>
-    $(document).ready(function(){
-        $("#printbutton").click(function(){
-            //$("#formnewloss").printArea({ mode: 'popup', popClose: true });
-
-            $("#formnewlos").dialog({
-                resizable: false,
-                height: "auto",
-                width: 400,
-                modal: true,
-                buttons: {
-                    "Imrprimer ?": function(){
-                        $(this).dialog("close");
-                    },
-                    Cancel: function(){
-                        $(this).dialog("close");
-                    }
-                }
-            });
-        });
-    });
+function printContent(el){
+	var restorepage = document.body.innerHTML;
+	var printcontent = document.getElementById(el).innerHTML;
+	document.body.innerHTML = printcontent;
+	window.print();
+	document.body.innerHTML = restorepage;
+}
 </script>
 
 <footer>
