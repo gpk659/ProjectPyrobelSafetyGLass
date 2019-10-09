@@ -4,7 +4,9 @@
   require "../dbConnect.php";
   include_once 'newRequests.php';
 
-  $idVol = $_GET['idVol'];
+
+  $_SESSION['idVol']=$_GET['idVol'];
+  echo   $_SESSION['idVol'];
 
   function rendementEst($lgVol, $lgChute, $htVol, $htChute){
     global $codeCss;
@@ -29,11 +31,12 @@
     $idPlateau;
 
     try {
+      $query="INSERT INTO `DB_Pyrobel`.`plateau` (`idEmplacement`, `numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`,`commentaire`, `date`)
+              VALUES ('0', '$numCadre', '0', '$numPlateau', '$largeur', '$hauteur','$cmt','$dateAjout')";
 
-      $queryNewPlat="INSERT INTO `safetyglass_db`.`plateau` (`numCadre`, `positionCadre`, `numPlateau`, `largeur`, `hauteur`, `commentaire`, `date`)
-                     VALUES ($numCadre', '0', '$numPlateau', '$largeur', '$hauteur', '$cmt', '$dateAjout')";
-      $addPlat=$db->query($queryNewPlat);
+      $addPlat=$db->query($query);
       echo "succes";
+      header('Location: http://localhost/SafetyGlassProject/gestion/listvolume.php');
     }catch(PDOException $e){
       echo $addPlat . "<br>" . $e->getMessage();
     }
@@ -56,8 +59,8 @@ $largeur;
 $numerocom;
 $numlettre;
 $sqlUseVol = "SELECT idListeVolume,numCom,lettre,x,nnn,datelivraison,typeverre,largeur,hauteur,faconnage,commentaire,chutesug
-              FROM safetyglass_db.listevolume
-              WHERE idListeVolume = ".$idVol;
+              FROM DB_Pyrobel.listevolume
+              WHERE idListeVolume = ".$_SESSION['idVol'];
 
 $listUseVol = $db->query($sqlUseVol);
 

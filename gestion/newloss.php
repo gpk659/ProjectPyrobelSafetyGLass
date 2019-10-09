@@ -23,7 +23,7 @@
 <main>
     <form id="formnewloss" action="sql_add.php" method="get">
         <fieldset>
-            <legend>Ajouter une nouvelle chute</legend>
+            <legend id='titleform'>Ajouter une nouvelle chute</legend>
             <div class="form-group">
                 <label for="hauteurcChute">Hauteur :</label>
                 <input class="form-control" id="hauteurchute" type="number" name="hauteurChute" min="1" max="3210" step="1" placeholder="Valeur en mm" required>
@@ -34,7 +34,7 @@
             <div class="form-group">
                <?php elementNewLoss('SoustypeChute'); ?>
             </div>
-            <div class="form-group">
+            <div id='rack' class="form-group">
                 <?php elementNewLoss('rack');  ?>
             </div>
 <hr>
@@ -42,7 +42,7 @@
                 <?php elementNewLoss('plateau');  ?>
             </div>
             <hr>
-            <div class="form-group">
+            <div id='comment' class="form-group">
                 <label>Commentaire :</label>
                 <textarea class="form-control" rows="4" cols="70" id="comment" name="comment" placeholder="Votre commentaire ici..." required></textarea>
             </div>
@@ -58,7 +58,6 @@
             </div>
         </fieldset>
     </form>
-<button type="button" onclick="printContent('formnewloss')" class="btn btn-primary">Imprimer</button>
 </main>
 <script>
 function printContent(el){

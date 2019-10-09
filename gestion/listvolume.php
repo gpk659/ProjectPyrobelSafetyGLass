@@ -207,16 +207,15 @@ include_once "menu.php";
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['chutesug'] . "</td>
                               <td><a href='usevol.php?idVol=".$idVol."'>Produire</a></td>
-                              <td><button class=\"buttonvol\" type=\"button\" name=\"button\" onclick=\"deleteVol('$numcom','$qte','$idVol');\">
-                                    Supprimer
-                                  </button></td>
+                              <td><a class='deleteloss' href='deletevol.php?vol=".$idVol."'>
+                                      <i class='far fa-trash-alt'></i>
+                                    </a></td>
                               </tr>";
                   }
                   /* Utiliser : call a php sql script to use it */
                   /* Supprimer : call a php function with confirmation to delete */
       ?>
     </tbody>
-
   </table>
 </div>
 <div id="listVolBon" class="tabcontent"> <!-- Tableau des volumes faits -->

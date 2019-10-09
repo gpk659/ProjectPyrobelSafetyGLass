@@ -5,4 +5,25 @@
     text-align: center;
 }
 
-#cssmenu, form, #currentUser, footer{ display: none;}
+#cssmenu, form, #currentUser, footer, #rack , #comment, .boutonsubmit, #titleform{ display: none;}
+
+#formnewloss fieldset legend { display: none;}
+
+
+.printarea{
+  border: 1px solid black;
+  width: 377.953px;
+  height: 453.5436px;
+  color: black;
+}
+.printarea span{
+  font-size: 45px;
+}
+.item{
+  text-align: right;
+  margin: 13px;
+}
+.item2{
+  text-align: center;
+  font-size: 50px;
+}

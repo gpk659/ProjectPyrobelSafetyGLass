@@ -198,6 +198,9 @@ fieldset legend {
     display: none;
     padding: 6px 12px;
 }
+.tabcontents {
+    padding: 6px 12px;
+}
 
 .tabcontentPrint{
     padding: 6px 12px;
@@ -336,4 +339,28 @@ fieldset legend {
 
 #newplatUseVol{
   width: 90%;
+}
+
+.deleteloss{
+   color:red;
+}
+.updateloss{
+  color:green;
+}
+
+.printarea{
+  border: 1px solid black;
+  width: 377.953px;
+  height: 453.5436px;
+  color: black;
+}
+.printarea span{
+  font-size: 45px;
+}
+.item{
+  text-align: right;
+  margin: 15px;
+}
+.item2{
+  text-align: center;
 }

@@ -60,7 +60,7 @@
                               <td>" . $row['description'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['longueur'] . "</td>
-                              <td><a href=\"editlist.php?typem=rack&idr=" . $row['idRack'] . "&abv=" . $row['abreviation'] . "&nomRack=" . $row['nomRack'] . "&des=" . $row['description'] . "&lg=" . $row['largeur'] . "&lgr=" . $row['longueur'] . "\">Modifier</a></td>
+                              <td><a class='updateloss' href=\"editlist.php?typem=rack&idr=" . $row['idRack'] . "&abv=" . $row['abreviation'] . "&nomRack=" . $row['nomRack'] . "&des=" . $row['description'] . "&lg=" . $row['largeur'] . "&lgr=" . $row['longueur'] . "\"><i class='far fa-edit'></i></a></td>
                               </tr>";
                   }
       ?>
@@ -97,7 +97,7 @@
                               <td>" . $row['commentaire'] . "</td>
                               <td>" . $row['date'] . "</td>
                               <td>" . $row['nomFournisseur'] . "</td>
-                              <td><a href='editlist.php?typem=plateau&numCadre=" . $row['numCadre'] . "&numPlateau=" . $row['numPlateau'] . "&largeur=" . $row['largeur'] . "&comment=" . $row['commentaire'] . "&date=" . $row['date'] . "&nomF=" . $row['nomFournisseur'] . "&idp=".$row['idPlateau']."'>Modifier</a></td></tr>";
+                              <td><a class='updateloss' href='editlist.php?typem=plateau&numCadre=" . $row['numCadre'] . "&numPlateau=" . $row['numPlateau'] . "&largeur=" . $row['largeur'] . "&comment=" . $row['commentaire'] . "&date=" . $row['date'] . "&nomF=" . $row['nomFournisseur'] . "&idp=".$row['idPlateau']."'><i class='far fa-edit'></i></a></td></tr>";
                   }
       ?>
     </tbody>
@@ -132,7 +132,7 @@
                               <td>" . $row['codeAGCType'] . "</td>
                               <td>" . $row['descriptionCourte'] . "</td>
                               <td>" . $row['descriptionComplete'] . "</td>
-                              <td><a href='editlist.php?typem=chute&idc=" . $row['idType'] . "&eptype=" . $row['epType'] . "&masstype=" . $row['masseType'] . "&codeAGCType=" . $row['codeAGCType'] . "&descourte=" . $row['descriptionCourte'] . "&descomp=" . $row['descriptionComplete']. "'>Modifier</a></td>
+                              <td><a class='updateloss'  href='editlist.php?typem=chute&idc=" . $row['idType'] . "&eptype=" . $row['epType'] . "&masstype=" . $row['masseType'] . "&codeAGCType=" . $row['codeAGCType'] . "&descourte=" . $row['descriptionCourte'] . "&descomp=" . $row['descriptionComplete']. "'><i class='far fa-edit'></i></a></td>
                               </tr>";
                   }
       ?>

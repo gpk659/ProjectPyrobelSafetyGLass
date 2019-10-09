@@ -36,7 +36,7 @@
               <th>Position</th>
               <th>Rack</th>
               <th>Plateau</th>
-              <th>Modification Rack</th>
+              <th>Actions</th>
           </tr>
       </thead>
       <tbody>
@@ -50,7 +50,8 @@
               WHERE emplacement_idEmplacement = emp.idEmplacement
                     and rack_idRack = idRack
                     and plateau_idPlateau = idPlateau
-                    and type_idType = idType";
+                    and type_idType = idType
+                    and deleted = '0'";
 
       //$qte="SELECT count(*) as qte FROM db_pyrobel.listechutte group by emplacement_idEmplacement";
 
@@ -86,21 +87,34 @@
                          $rackSql = $db->query($rack);
                          $modifrack='';
                   echo "<td id='modifrack'>";
-                  echo "<select class=\"custom-select\" id='rack' name='listerack' size='1'>
-                          <option name='rack' value='' disabled selected hidden> Sélectionnez un rack... </option>";
-                  foreach ($rackSql as $key) {
-                    $modifrack=$row['idRack'];
-                      echo "<option name='rack' value=".$key['idRack'].">".$key['nomRack']."</option>";
-                  }
-                  echo "</select><a href='edit.inc.php'>
-                                  <i class='far fa-edit'></i>
-                                 </a></td>";
+                  //echo "<form action='edit.inc.php' method='post'>";
+                  //echo "<select class=\"custom-select\" id='rack' name='listerack' size='1'>
+                        //  <option name='rack' value='' disabled selected hidden> Sélectionnez un rack... </option>";
+                  //foreach ($rackSql as $key) {
+                  //  $modifrack=$row['idRack'];
+                  //    echo "<option name='rack' value=".$key['idRack'].">".$key['nomRack']."</option>";
+                //  }
+                  //echo "</select>";
+
+                  //bouton print
+                  echo "<a href='printloss.php?chute=".$row['idChutte']."'>
+                          <i class='fas fa-print'></i>
+                        </a>";
+                  // bouton edit
+                  echo "<a class='updateloss' href='edit.inc.php?chute=".$row['idChutte']."&emp=".$row['idEmp']."'>
+                          <i class='far fa-edit'></i>
+                        </a>";
+                  //bouton delete
+                  echo "<a class='deleteloss' href='deleteloss.php?chute=".$row['idChutte']."'>
+                          <i class='far fa-trash-alt'></i>
+                        </a></td>";
+
                 }
               }
       ?>
       </tbody>
     </table>
-    <a href="#" class="btn btn-success pull-right"><i class="glyphicon glyphicon-export"></i>&nbsp;Exporter</a> 
+    <!--<a href="#" class="btn btn-success pull-right"><i class="glyphicon glyphicon-export"></i>&nbsp;Exporter</a>-->
     <footer>
         <span class="credit">v. 0.1 - © P. G.</span>
     </footer>
