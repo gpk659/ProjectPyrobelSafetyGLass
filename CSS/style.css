@@ -333,8 +333,8 @@ fieldset legend {
   font-size: 1.1em;
 }
 
-#formnewloss, #newVolume, #newOp, #newType, #newRack, #newEmp, #editRack, #editPlat, #editChute{
-  width: 50%;
+#formnewloss, #newVolume, #newOp, #newType, #newRack, #newEmp, #editRack, #editPlat, #editChute, .newplat{
+  width: 60%;
 }
 
 #newplatUseVol{

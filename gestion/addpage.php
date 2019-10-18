@@ -26,6 +26,8 @@
         <button class="tablinks" onclick="openCity(event, 'addUser')"> Ajout Opérateur </button>
         <button class="tablinks" onclick="openCity(event, 'addType')"> Ajout Type </button>
         <button class="tablinks" onclick="openCity(event, 'addRack')"> Ajout Rack </button>
+        <button class="tablinks" onclick="openCity(event, 'addPlateau')"> Ajout Plateau </button>
+
     </div>
 <hr />
     <div id="addUser" class="tabcontent">
@@ -215,6 +217,52 @@
                 </div>
             </fieldset>
         </form>
+    </div>
+    <div id="addPlateau" class="tabcontent">
+      <!-- Form Nouveau Plateau -->
+            <form class="newplat" name='plateau' method="post" action="newplat.php">
+              <fieldset class="form_add">
+                  <legend>Ajouter Plateau</legend>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label control-label plateau">Num Plateau :</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="text" name="numPlateau" value="" required>
+                </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label control-label">Num Cadre :</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" name="numCadre" value="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label control-label">Largeur :</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="number" name="largeur" value="" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label control-label">Hauteur :</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="number" name="hauteur" value="" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label control-label">Commentaire :</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" name="cmt" value="">
+              </div>
+            </div>
+            <div>
+              <input type="hidden" name="plateau" value="plateau">
+              <input type="hidden" name="idp" value="">
+              <!-- Ajout de la date automatiquement , aussi specifier dans quel rack on range la nouvelle chute -->
+            </div>
+            <div class="boutonsubmit">
+              <input type="submit" name='plateau' class="btn btn-primary" value="Ajouter">
+            </div>
+          </fieldset>
+          </form>
     </div>
 
 </main>

@@ -40,7 +40,9 @@
 <hr>
             <div class="form-group">
                 <?php elementNewLoss('plateau');  ?>
+                <a href='http://localhost/SafetyGlassProject/gestion/addpage.php'> > Ajouter un nouveau plateau</a>
             </div>
+
             <hr>
             <div id='comment' class="form-group">
                 <label>Commentaire :</label>

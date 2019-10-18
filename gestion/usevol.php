@@ -6,7 +6,7 @@
 
 
   $_SESSION['idVol']=$_GET['idVol'];
-  echo   $_SESSION['idVol'];
+  //echo   $_SESSION['idVol'];
 
   function rendementEst($lgVol, $lgChute, $htVol, $htChute){
     global $codeCss;
