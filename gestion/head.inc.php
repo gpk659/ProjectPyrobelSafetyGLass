@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/menu.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/jquery.dataTables.min.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../CSS/dataTables.bootstrap4.min.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css" media="screen">
 
     <!-- CSS Impression -->
     <link rel="stylesheet" type="text/css" href="../CSS/print.css" media="print">
@@ -35,6 +36,13 @@
     <script type="text/javascript" src="../JS/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="../JS/myscript.js"></script>
     <script type="text/javascript" src="../JS/volscript.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+
     <!--===============================================================================================-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->

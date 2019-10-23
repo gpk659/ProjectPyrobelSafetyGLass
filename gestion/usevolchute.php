@@ -6,8 +6,23 @@ if( message == true ) {
    window.location.replace("http://localhost/SafetyGlassProject/gestion/newloss.php");
 } else if(message == false) {
    console.log("pas de chutes restantes");
+</script>
+<?php
+$id=$_GET['idChutte'];
+$idVol=$_GET['idVol'];
+$ht=$_GET['ht'];
+$lg=$_GET['lg'];
+$date=$_GET['date'];
+$cmt=$_GET['cmt'];
+$numcom=$_GET['numcom'];
+$lettre=$_GET['lettre'];
+$hfab=$_GET['hfab'];
 
+echo $id;
 
-   window.location.replace("http://localhost/SafetyGlassProject/gestion/listvolume.php");
+?>
+<script>
+   //window.location.replace("http://localhost/SafetyGlassProject/gestion/listvolume.php");
+
 }
 </script>

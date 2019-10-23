@@ -141,6 +141,7 @@ foreach ($listUseVol as $row) {
                             $lg=$row['lg'];
                             $cmt='fait';
                             $datefab=date('Y-m-d');
+                            $heurefab=date('H:i:s');
 
                             foreach ($nbchutte as $key) {
                                 $nb=$key['nb'];
@@ -157,7 +158,7 @@ foreach ($listUseVol as $row) {
                                           echo " %</td>
                                           <td>".$row['rack']."</td>
                                           <td>" . $row['positionEmp'] . "/$nb</td>
-                                          <td> <a href='usevolchute.php?idChutte=$idchute&idVol=$idVol&ht=$ht&lg=$lg&date=$datefab&cmt=$cmt&numcom=$numerocom&lettre=$numlettre'>Utiliser</a> </td>";
+                                          <td> <a href='usevolchute.php?idChutte=$idchute&idVol=$idVol&ht=$ht&lg=$lg&date=$datefab&cmt=$cmt&numcom=$numerocom&lettre=$numlettre&hfab=$heurefab'>Utiliser</a> </td>";
                               }
                             }
                   ?>

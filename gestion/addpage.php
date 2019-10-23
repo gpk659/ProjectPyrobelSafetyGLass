@@ -53,6 +53,14 @@
                         <input class="form-control" type="password" name="password_conf" placeholder=" Confirmation Mot de passe" required>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Niveau de droit</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" name="droit" min="1" max="10" required>
+                    </div>
+                    <span class="infodroit"> <i class="fas fa-exclamation"></i> 10 - 7 -> tous les droits, 6 - 1 -> droits minimum</span>
+
+                </div>
                 <div class="boutonsubmit">
                     <input type="submit" class="btn btn-primary" value="Ajouter">
                 </div>

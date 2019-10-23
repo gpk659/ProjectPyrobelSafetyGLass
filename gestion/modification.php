@@ -28,6 +28,8 @@
   <button class="tablinks" onclick="openCity(event, 'listRack')"> Liste Rack </button>
   <button class="tablinks" onclick="openCity(event, 'listPlateau')"> Liste Type Chute </button>
   <button class="tablinks" onclick="openCity(event, 'listTypeChute')"> Liste Plateau </button>
+  <button class="tablinks" onclick="openCity(event, 'listUser')"> Liste Opérateurs </button>
+
 </div>
 
 <hr />
@@ -133,6 +135,37 @@
                               <td>" . $row['descriptionCourte'] . "</td>
                               <td>" . $row['descriptionComplete'] . "</td>
                               <td><a class='updateloss'  href='editlist.php?typem=chute&idc=" . $row['idType'] . "&eptype=" . $row['epType'] . "&masstype=" . $row['masseType'] . "&codeAGCType=" . $row['codeAGCType'] . "&descourte=" . $row['descriptionCourte'] . "&descomp=" . $row['descriptionComplete']. "'><i class='far fa-edit'></i></a></td>
+                              </tr>";
+                  }
+      ?>
+    </tbody>
+  </table>
+</div>
+
+<div id="listUser" class="tabcontent">
+  <table id="tableModifPlateau" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+      <tr>
+        <th>Nom Opérateur</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $sqlUser="SELECT iduser, name
+                FROM DB_Pyrobel.user
+                where iduser != '1';";
+
+      $listUser = $db->query($sqlUser);
+
+              foreach ($listUser as $row) {
+
+                      echo "<tr class='lignetab'>
+                              <td>" . $row['name'] . "</td>
+
+                              <td><a class='deleteloss' href='deleteUser.php?user=".$row['iduser']."'>
+                                      <i class='far fa-trash-alt'></i>
+                                    </a></td>
                               </tr>";
                   }
       ?>

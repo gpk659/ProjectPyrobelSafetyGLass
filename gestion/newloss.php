@@ -38,9 +38,9 @@
                 <?php elementNewLoss('rack');  ?>
             </div>
 <hr>
-            <div class="form-group">
+            <div id="listingPlat" class="form-group">
                 <?php elementNewLoss('plateau');  ?>
-                <a href='http://localhost/SafetyGlassProject/gestion/addpage.php'> > Ajouter un nouveau plateau</a>
+                <a href='http://localhost/SafetyGlassProject/gestion/addpage.php' target="_blank"> > Ajouter un nouveau plateau</a>
             </div>
 
             <hr>
@@ -69,6 +69,13 @@ function printContent(el){
 	window.print();
 	document.body.innerHTML = restorepage;
 }
+
+$(document).ready(function() {
+  $.ajaxSetup({ cache: false }); // This part addresses an IE bug. without it, IE will only load the first number and will never refresh
+  setInterval(function() {
+    $('#listingPlat').load('listingPlat.php');
+  }, 5000); // the "3000" here refers to the time to refresh the div. it is in milliseconds.
+});
 </script>
 
 <footer>

@@ -44,7 +44,12 @@ $(document).ready(function(){
             "language": {
                 "url": "../JS/French.json"
             },
-            "lengthMenu": [ 10,50,100 ]
+            "lengthMenu": [ 10,50,100 ],
+            dom: 'Bfrtip',
+            buttons: [
+                'excelHtml5',
+                'pdfHtml5'
+            ]
         } );
 
 

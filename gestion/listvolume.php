@@ -146,7 +146,7 @@ include_once "menu.php";
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Façonnage :</label>
         <div class="col-sm-10">
-            <input class="form-control" type="textarea" name="faconnage" placeholder="Façonnage" required>
+            <input class="form-control" type="textarea" name="faconnage" placeholder="Façonnage">
         </div>
       </div>
       <div class="form-group row">
@@ -227,13 +227,15 @@ include_once "menu.php";
         <th>Date Fabrication</th>
         <th>Largeur</th>
         <th>Hauteur</th>
+        <th>Type Verre</th>
         <th>Commentaire</th>
       </tr>
     </thead>
     <tbody>
       <?php
-          $sqllistvolbon = "SELECT numCom,lettre,largeur,hauteur,datefabrication, commentaire
-                          FROM  DB_Pyrobel.listevolumesbons;";
+          $sqllistvolbon = "SELECT numCom,lettre,largeur,hauteur, typeverre,datefabrication, heureFabrication, commentaire
+                          FROM  DB_Pyrobel.listevolumesbons
+                          order by  dateFabrication desc,  heureFabrication desc;";
           $listVolbon = $db->query($sqllistvolbon);
 
               foreach ($listVolbon as $row) {
@@ -243,6 +245,7 @@ include_once "menu.php";
                               <td>" . $row['datefabrication'] . "</td>
                               <td>" . $row['largeur'] . "</td>
                               <td>" . $row['hauteur'] . "</td>
+                              <td>". $row['typeverre'] ."</td>
                               <td>" . $row['commentaire'] . "</td>
                               </tr>";
                   }

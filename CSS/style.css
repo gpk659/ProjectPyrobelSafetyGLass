@@ -364,3 +364,9 @@ fieldset legend {
 .item2{
   text-align: center;
 }
+
+.infodroit{
+  color: green;
+  margin: 5px;
+  padding: 5px;
+}
